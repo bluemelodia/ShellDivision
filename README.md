@@ -1,5 +1,33 @@
 # Testudo
 ```
+Game Plan - Do NOT proceed to the next stage until the current stage is on both devices
+1) Implement basic game logic on both iOS and Android
+  - state with single biome
+  - surround opponents from all sides, they die
+  - board full, winner is the one with more organisms (can tie)
+  - all members of opponent dies, you win 
+2) Implement eras and the mass extinctions
+  - for now, they kill indiscriminately
+  - in the subsequent steps you must take care to not trigger certain ones too often
+3) Implement state of organism with matching visuals (egg, infant, juvenile, adult)
+4) Implement the famine and disease, which will affect 3)
+5) Implement all of the predator types
+  - first, get them to eat indiscriminately
+  - then get them to treat different age brackets differently 
+6) Implement the invasive species
+  - they are mindless and will just spread adjacently, making them rather easy to destroy
+7) Implement the competitors, which behave just like the organisms and are affected by everything that affects them
+  - the competitors are smarter than the invasive species, and will spread out more
+8) Add in the habitat-altering disasters
+9) Add in geographical barriers
+10) Add in the different organism types, and their perks
+11) Add in different game modes
+  Normal mode: default 
+  Predation mode: predators never disappear from the screen
+  Extinction mode: competitors and invasive species will remain on the board until wiped out, plus predators never disappear
+
+Realistically probably will not get past #5.
+
 2-player game where your goal is to survive to the modern era as the dominant species
 Gameplay takes place on a small grid, where you can lay down one organism per turn (5 turns = 1 era)
 Organism can be placed pretty much anywhere that's habitable
