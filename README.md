@@ -4,6 +4,7 @@
 Gameplay takes place on a small grid, where you can lay down one organism per turn (5 turns = 1 era)
 Organism can be placed pretty much anywhere that's habitable
 If you can completely surround an opposing piece with your pieces, all of the opposing pieces will die (outcompeted), this includes invasive and competing species but not predators
+Game will end if one of the 2 players die, or when there are no spaces left on the grid
 How to win: survive to the modern era with more organisms on the board than your rival, you become the dominant species 
 
 Organism 
