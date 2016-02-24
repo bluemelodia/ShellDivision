@@ -22,9 +22,9 @@ Game Plan - Do NOT proceed to the next stage until the current stage is on both 
 9) Add in geographical barriers
 10) Add in the different organism types, and their perks
 11) Add in different game modes
-  Normal mode: default 
-  Predation mode: predators never disappear from the screen
-  Extinction mode: competitors and invasive species will remain on the board until wiped out, plus predators never disappear
+  Normal mode: default 8x8 board
+  Predation mode: 13x13 board, predators never disappear from the screen
+  Extinction mode: 19x19 board, competitors and invasive species will remain on the board until wiped out, plus predators never disappear
 
 Realistically probably will not get past #5.
 
