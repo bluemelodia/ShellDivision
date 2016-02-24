@@ -33,6 +33,7 @@ Holocene - guaranteed massive extinction event (humans)
 Events
 1) Mass exinction, which will trigger randomly, but at most once every three eras - a high percentage of organisms on the board wiped out
   Possibilities: supervolcano, meteorite impact, ice age, alien invasion
+    Alien invasion will WIPE THE ENTIRE BOARD!
 2) Disaster, which may affect anywhere from one to all terrains
   a) Famine - organisms take 2x the time to mature into adults 
   b) Disease - organisms in a certain age bracket have higher mortality 
