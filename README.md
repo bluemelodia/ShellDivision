@@ -3,6 +3,7 @@
 2-player game where your goal is to survive to the modern era as the dominant species
 Gameplay takes place on a small grid, where you can lay down one organism per turn (5 turns = 1 era)
 If you can completely surround an opposing piece with your pieces, all of the opposing pieces will die (outcompeted), this includes invasive and competing species but not predators
+How to win: survive to the modern era with more organisms on the board than your rival, you become the dominant species 
 
 Organism 
 Newest organisms are eggs, they can be killed by pretty much anything
@@ -13,6 +14,19 @@ Survive 3 turns = adult, immune to bird, crab, and racoon predation, moderate ch
 Environment
 There are three zones in the beginning: grasslands, desert, beach, and ocean
 The terrain will stay the same, but certain areas may become inhabitable due to random events
+
+Time Periods
+These will just give you a good idea of how close you are to the end of the game, but besides the extinction events there will be no guarantee of scientific accuracy
+Upper Jurassic
+Lower Cretaceous
+Upper Cretaceous - guaranteed massive extinction event (bye bye dinosaurs)
+Paleocene
+Eocene
+Oligocene
+Miocene
+Pliocene
+Pleistocene
+Holocene - guaranteed massive extinction event (humans)
 
 Events
 1) Mass exinction, which will trigger randomly, but at most once every three eras - a high percentage of organisms on the board wiped out
