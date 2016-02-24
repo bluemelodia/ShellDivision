@@ -11,7 +11,7 @@ Game Plan - Do NOT proceed to the next stage until the current stage is on both 
   - in the subsequent steps you must take care to not trigger certain ones too often
 3) Implement state of organism with matching visuals (egg, infant, juvenile, adult)
 4) Implement the famine and disease, which will affect 3)
-5) Implement all of the predator types
+5) Implement all of the predator types and the four biomes
   - first, get them to eat indiscriminately
   - then get them to treat different age brackets differently 
   - then get them to treat different biomes differently; alternatively, pick predators that can traverse all biomes
