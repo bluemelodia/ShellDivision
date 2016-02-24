@@ -14,6 +14,7 @@ Game Plan - Do NOT proceed to the next stage until the current stage is on both 
 5) Implement all of the predator types
   - first, get them to eat indiscriminately
   - then get them to treat different age brackets differently 
+  - then get them to treat different biomes differently; alternatively, pick predators that can traverse all biomes
 6) Implement the invasive species
   - they are mindless and will just spread adjacently, making them rather easy to destroy
 7) Implement the competitors, which behave just like the organisms and are affected by everything that affects them
