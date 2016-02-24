@@ -1,5 +1,5 @@
 # Testudo
-'''
+```
 2-player game where your goal is to survive to the modern era as the dominant species
 Gameplay takes place on a small grid, where you can lay down one organism per turn (5 turns = 1 era)
 If you can completely surround an opposing piece with your pieces, all of the opposing pieces will die (outcompeted), this includes invasive and competing species but not predators
@@ -25,4 +25,4 @@ Events
   e) Predation - birds (teleport), crabs/racoons (moves to adjacent spaces only, and only vertically or horizontally), and sharks/crocodiles (swim in any direction, the latter will hunt turtles on land) appear and start to move around the grid randomly, eating any organisms that they encounter
   f) Habitat-altering disasters such as algal blooms/oil spills (ocean), litter (beach),  rendering certain portions of the board temporarily uninhabitable
   g) Geographical barriers - these can arise randomly, but at most once every 10 eras, which will kill any organisms that were on the squares where the barrier arises, they will dissipate after 10 eras
-'''
+```
