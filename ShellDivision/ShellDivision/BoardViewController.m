@@ -19,7 +19,9 @@
     [super viewDidLoad];
 
     UICollectionViewFlowLayout *flow = [[UICollectionViewFlowLayout alloc] init];
-    flow.itemSize = CGSizeMake(100, 100);
+    flow.itemSize = CGSizeMake(43, 43);
+    flow.minimumInteritemSpacing = 0;
+    flow.minimumLineSpacing = 3;
     
     [self.board setCollectionViewLayout:flow];
     [self.board setBackgroundColor:[UIColor clearColor]];
@@ -39,11 +41,12 @@
 
 
 - (NSInteger)collectionView:(UICollectionView *)collectionView numberOfItemsInSection:(NSInteger)section {
-    return 9;
+    return 64;
 }
 
 - (UICollectionViewCell *)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath {
     BoardCollectionViewCell *cell = [self.board dequeueReusableCellWithReuseIdentifier:@"BoardCell" forIndexPath:indexPath];
+    [cell setBackgroundColor:[UIColor redColor]];
     return cell;
 }
 

@@ -16,8 +16,15 @@
             <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
-                <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" fixedFrame="YES" dataMode="none" translatesAutoresizingMaskIntoConstraints="NO" id="zhW-P0-mXO">
-                    <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="FDM-14-dSa">
+                    <rect key="frame" x="0.0" y="0.0" width="600" height="44"/>
+                    <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="44" id="fYF-JL-mce"/>
+                    </constraints>
+                </view>
+                <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="none" translatesAutoresizingMaskIntoConstraints="NO" id="zhW-P0-mXO">
+                    <rect key="frame" x="5" y="44" width="590" height="551"/>
                     <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="10" minimumInteritemSpacing="10" id="RAP-jR-JwU">
                         <size key="itemSize" width="50" height="50"/>
                         <size key="headerReferenceSize" width="0.0" height="0.0"/>
@@ -31,6 +38,23 @@
                 </collectionView>
             </subviews>
             <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+            <constraints>
+                <constraint firstAttribute="trailing" secondItem="FDM-14-dSa" secondAttribute="trailing" id="B6H-CH-wsE"/>
+                <constraint firstItem="zhW-P0-mXO" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" constant="5" id="CJC-t9-tvn"/>
+                <constraint firstItem="zhW-P0-mXO" firstAttribute="top" secondItem="i5M-Pr-FkT" secondAttribute="top" id="EfD-oF-fFd"/>
+                <constraint firstItem="FDM-14-dSa" firstAttribute="top" secondItem="i5M-Pr-FkT" secondAttribute="top" id="G9f-Z6-idn"/>
+                <constraint firstItem="zhW-P0-mXO" firstAttribute="top" secondItem="FDM-14-dSa" secondAttribute="bottom" id="KYj-v4-58W"/>
+                <constraint firstItem="zhW-P0-mXO" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" constant="5" id="Ocb-aR-wO6"/>
+                <constraint firstAttribute="trailing" secondItem="zhW-P0-mXO" secondAttribute="trailing" constant="5" id="PcZ-NO-1g7"/>
+                <constraint firstAttribute="bottom" secondItem="zhW-P0-mXO" secondAttribute="bottom" constant="5" id="ZPO-pc-sxf"/>
+                <constraint firstAttribute="trailing" secondItem="zhW-P0-mXO" secondAttribute="trailing" constant="5" id="jUl-lH-mOH"/>
+                <constraint firstItem="FDM-14-dSa" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" id="jkT-1X-tqS"/>
+            </constraints>
+            <variation key="default">
+                <mask key="constraints">
+                    <exclude reference="EfD-oF-fFd"/>
+                </mask>
+            </variation>
         </view>
     </objects>
 </document>
