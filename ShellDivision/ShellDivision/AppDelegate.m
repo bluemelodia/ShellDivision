@@ -8,19 +8,34 @@
 
 #import "AppDelegate.h"
 #import "BoardViewController.h"
+#import "Game.h"
 
 @interface AppDelegate ()
 
 @end
 
-@implementation AppDelegate
+@implementation AppDelegate {
+    Game *thisGame;
+}
 
+static NSString *const GAME_STATE = @"GameState";
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
     BoardViewController *boardVC = [[BoardViewController alloc] init];
     
     [self.window setRootViewController:boardVC];
     [self.window makeKeyAndVisible];
+    
+    // want to save the Game state in-between runs
+    if (![[NSUserDefaults standardUserDefaults]dataForKey:GAME_STATE]) {
+        thisGame = [[Game alloc] init];
+        NSLog(@"NEW GAME");
+        NSData *data = [NSKeyedArchiver archivedDataWithRootObject:thisGame];
+        [[NSUserDefaults standardUserDefaults] setObject:data forKey:GAME_STATE];
+    } else {
+        
+    }
+    
     return YES;
 }
 

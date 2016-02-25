@@ -19,7 +19,6 @@
 		4AFCE30E1C7EA669007E52B0 /* BoardViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4AFCE30C1C7EA669007E52B0 /* BoardViewController.m */; };
 		4AFCE30F1C7EA669007E52B0 /* BoardViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 4AFCE30D1C7EA669007E52B0 /* BoardViewController.xib */; };
 		4AFCE3121C7EB138007E52B0 /* Organism.m in Sources */ = {isa = PBXBuildFile; fileRef = 4AFCE3111C7EB138007E52B0 /* Organism.m */; };
-		4AFCE3151C7EB1AF007E52B0 /* Time.m in Sources */ = {isa = PBXBuildFile; fileRef = 4AFCE3141C7EB1AF007E52B0 /* Time.m */; };
 		4AFCE3181C7EB1BE007E52B0 /* Event.m in Sources */ = {isa = PBXBuildFile; fileRef = 4AFCE3171C7EB1BE007E52B0 /* Event.m */; };
 		4AFCE31B1C7EB6E0007E52B0 /* Game.m in Sources */ = {isa = PBXBuildFile; fileRef = 4AFCE31A1C7EB6E0007E52B0 /* Game.m */; };
 /* End PBXBuildFile section */
@@ -44,8 +43,6 @@
 		4AFCE30D1C7EA669007E52B0 /* BoardViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = BoardViewController.xib; sourceTree = "<group>"; };
 		4AFCE3101C7EB138007E52B0 /* Organism.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Organism.h; sourceTree = "<group>"; };
 		4AFCE3111C7EB138007E52B0 /* Organism.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Organism.m; sourceTree = "<group>"; };
-		4AFCE3131C7EB1AF007E52B0 /* Time.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Time.h; sourceTree = "<group>"; };
-		4AFCE3141C7EB1AF007E52B0 /* Time.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Time.m; sourceTree = "<group>"; };
 		4AFCE3161C7EB1BE007E52B0 /* Event.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Event.h; sourceTree = "<group>"; };
 		4AFCE3171C7EB1BE007E52B0 /* Event.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Event.m; sourceTree = "<group>"; };
 		4AFCE3191C7EB6E0007E52B0 /* Game.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Game.h; sourceTree = "<group>"; };
@@ -115,8 +112,6 @@
 				4AFCE30C1C7EA669007E52B0 /* BoardViewController.m */,
 				4AFCE3101C7EB138007E52B0 /* Organism.h */,
 				4AFCE3111C7EB138007E52B0 /* Organism.m */,
-				4AFCE3131C7EB1AF007E52B0 /* Time.h */,
-				4AFCE3141C7EB1AF007E52B0 /* Time.m */,
 				4AFCE3161C7EB1BE007E52B0 /* Event.h */,
 				4AFCE3171C7EB1BE007E52B0 /* Event.m */,
 				4AFCE3191C7EB6E0007E52B0 /* Game.h */,
@@ -199,7 +194,6 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				4AFCE3151C7EB1AF007E52B0 /* Time.m in Sources */,
 				4AFCE3121C7EB138007E52B0 /* Organism.m in Sources */,
 				4AFCE30E1C7EA669007E52B0 /* BoardViewController.m in Sources */,
 				4AFCE3181C7EB1BE007E52B0 /* Event.m in Sources */,

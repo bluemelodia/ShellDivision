@@ -9,7 +9,7 @@
 #import "BoardViewController.h"
 #import "BoardCollectionViewCell.h"
 #import "Organism.h"
-#import "Time.h"
+#import "Game.h"
 #import <QuartzCore/QuartzCore.h>
 
 @interface BoardViewController () {
@@ -64,6 +64,7 @@
     return cell;
 }
 
+// TODO, start a game, set the turn, and add logic to change turns
 - (void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath {
     BoardCollectionViewCell *cell = (BoardCollectionViewCell *) [self.board cellForItemAtIndexPath:indexPath];
     Organism *thisCreature = [organisms objectAtIndex:indexPath.row];

@@ -47,11 +47,17 @@
                     </connections>
                 </collectionView>
                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="125mya Late Jurassic" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ivD-sO-ZoZ">
-                    <rect key="frame" x="5" y="461" width="590" height="21"/>
+                    <rect key="frame" x="5" y="461" width="590" height="20.5"/>
                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
                     <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                     <nil key="highlightedColor"/>
                 </label>
+                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="kBL-J0-410">
+                    <rect key="frame" x="275" y="70" width="50" height="30"/>
+                    <state key="normal" title="Restart">
+                        <color key="titleColor" red="0.3294117647" green="0.32549019610000002" blue="0.72549019609999998" alpha="1" colorSpace="calibratedRGB"/>
+                    </state>
+                </button>
             </subviews>
             <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
             <constraints>
@@ -62,11 +68,13 @@
                 <constraint firstAttribute="bottom" secondItem="zAV-6b-4p8" secondAttribute="bottom" id="APS-Gz-KIM"/>
                 <constraint firstAttribute="trailing" secondItem="FDM-14-dSa" secondAttribute="trailing" id="B6H-CH-wsE"/>
                 <constraint firstItem="zhW-P0-mXO" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" constant="5" id="CJC-t9-tvn"/>
+                <constraint firstItem="kBL-J0-410" firstAttribute="centerX" secondItem="i5M-Pr-FkT" secondAttribute="centerX" id="EYJ-vz-c5L"/>
                 <constraint firstItem="wGG-me-wWU" firstAttribute="top" secondItem="FDM-14-dSa" secondAttribute="bottom" id="EwS-kU-GSm"/>
                 <constraint firstItem="FDM-14-dSa" firstAttribute="top" secondItem="i5M-Pr-FkT" secondAttribute="top" id="G9f-Z6-idn"/>
                 <constraint firstItem="zhW-P0-mXO" firstAttribute="top" secondItem="FDM-14-dSa" secondAttribute="bottom" id="KYj-v4-58W"/>
                 <constraint firstItem="zhW-P0-mXO" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" constant="5" id="Ocb-aR-wO6"/>
                 <constraint firstAttribute="trailing" secondItem="zhW-P0-mXO" secondAttribute="trailing" constant="5" id="PcZ-NO-1g7"/>
+                <constraint firstItem="zhW-P0-mXO" firstAttribute="top" secondItem="kBL-J0-410" secondAttribute="bottom" constant="44" id="Uly-a1-kxb"/>
                 <constraint firstItem="ivD-sO-ZoZ" firstAttribute="centerX" secondItem="i5M-Pr-FkT" secondAttribute="centerX" id="WaI-a7-l13"/>
                 <constraint firstAttribute="bottom" secondItem="zhW-P0-mXO" secondAttribute="bottom" constant="5" id="ZPO-pc-sxf"/>
                 <constraint firstAttribute="trailing" secondItem="wGG-me-wWU" secondAttribute="trailing" id="blI-pq-869"/>
