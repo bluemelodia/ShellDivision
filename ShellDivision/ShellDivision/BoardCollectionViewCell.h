@@ -8,6 +8,12 @@
 
 #import <UIKit/UIKit.h>
 
+enum cellState {
+    Empty = 0,
+    P1 = 1,
+    P2 = 2
+};
+
 @interface BoardCollectionViewCell : UICollectionViewCell
 
 @end

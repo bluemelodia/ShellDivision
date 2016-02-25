@@ -10,7 +10,9 @@
 #import "BoardCollectionViewCell.h"
 #import <QuartzCore/QuartzCore.h>
 
-@interface BoardViewController ()
+@interface BoardViewController () {
+    int tiles[64];
+}
 
 @end
 
@@ -29,6 +31,11 @@
     
     UINib *nib = [UINib nibWithNibName:@"BoardCollectionViewCell" bundle:nil];
     [self.board registerNib:nib forCellWithReuseIdentifier:@"BoardCell"];
+    
+    // initialize the tile states to empty
+    for (int i = 0; i < 64; i++) {
+        tiles[i] = Empty;
+    }
 }
 
 - (void)didReceiveMemoryWarning {

@@ -1,19 +1,20 @@
 //
-//  Organism.m
+//  Time.h
 //  ShellDivision
 //
 //  Created by Melanie Lislie Hsu on 2/24/16.
 //  Copyright © 2016 Melanie Lislie Hsu. All rights reserved.
 //
 
-#import "Organism.h"
+#import <Foundation/Foundation.h>
 
+enum Turn {
+    P1 = 0,
+    P2 = 1
+};
 
+static int era = 157;
 
-@implementation Organism
-
-- (void) spawn {
-    
-}
+@interface Time : NSObject
 
 @end

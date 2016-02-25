@@ -8,6 +8,11 @@
 
 #import <Foundation/Foundation.h>
 
+enum species {
+    Snapper = 0,
+    Sea = 1
+};
+
 @interface Organism : NSObject
 
 @end
