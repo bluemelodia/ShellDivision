@@ -8,10 +8,11 @@
 
 #import "BoardViewController.h"
 #import "BoardCollectionViewCell.h"
+#import "Organism.h"
 #import <QuartzCore/QuartzCore.h>
 
 @interface BoardViewController () {
-    int tiles[64];
+    NSMutableArray *organisms;
 }
 
 @end
@@ -31,10 +32,13 @@
     
     UINib *nib = [UINib nibWithNibName:@"BoardCollectionViewCell" bundle:nil];
     [self.board registerNib:nib forCellWithReuseIdentifier:@"BoardCell"];
+    organisms = [[NSMutableArray alloc] initWithCapacity:64];
     
     // initialize the tile states to empty
     for (int i = 0; i < 64; i++) {
-        tiles[i] = Empty;
+        Organism *newCreature = [[Organism alloc] init];
+        [newCreature spawn:Empty];
+        [organisms addObject:newCreature];
     }
 }
 

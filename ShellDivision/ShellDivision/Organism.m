@@ -12,8 +12,8 @@
 
 @implementation Organism
 
-- (void) spawn {
-    
+- (void) spawn: (int) species {
+
 }
 
 @end

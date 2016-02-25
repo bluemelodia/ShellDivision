@@ -10,9 +10,12 @@
 
 enum species {
     Snapper = 0,
-    Sea = 1
+    Sea = 1,
+    Empty = 2
 };
 
 @interface Organism : NSObject
+
+- (void) spawn:(int) species;
 
 @end
