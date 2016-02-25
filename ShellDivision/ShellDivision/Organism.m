@@ -15,13 +15,13 @@
 - (void) spawn: (int) species {
     switch (species) {
         case 0:
-            sp = Snapper;
+            sp = Empty;
             break;
         case 1:
-            sp = Sea;
+            sp = Snapper;
             break;
         case 2:
-            sp = Empty;
+            sp = Sea;
             break;
     }
 }

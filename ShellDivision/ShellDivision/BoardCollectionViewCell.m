@@ -15,9 +15,10 @@
 }
 
 - (void)setCellImageByState:(int) state {
+    NSLog(@"State: %d", state);
     UIImage *image;
     if (state == 0) {
-        image = [UIImage imageNamed:@"Snapper.imageset"];
+        image = [UIImage imageNamed:@"Shell.imageset"];
         [self.cellImage setImage:image];
         [self.cellImage setAlpha:0.2];
         self.userInteractionEnabled = YES;
@@ -27,7 +28,7 @@
         [self.cellImage setAlpha:1];
         self.userInteractionEnabled = NO;
     } else {
-        image = [UIImage imageNamed:@"Snapper.imageset"];
+        image = [UIImage imageNamed:@"Sea.imageset"];
         [self.cellImage setImage:image];
         [self.cellImage setAlpha:1];
         self.userInteractionEnabled = NO;

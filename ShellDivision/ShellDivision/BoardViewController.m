@@ -41,6 +41,10 @@
         [newCreature spawn:Empty];
         [organisms addObject:newCreature];
     }
+    for (int i = 0; i < 64; i++) {
+        Organism *thisCreature = [organisms objectAtIndex:i];
+        NSLog(@"%d", [thisCreature getSpecies]);
+    }
 }
 
 - (void)didReceiveMemoryWarning {
@@ -61,6 +65,7 @@
     BoardCollectionViewCell *cell = [self.board dequeueReusableCellWithReuseIdentifier:@"BoardCell" forIndexPath:indexPath];
     Organism *thisCreature = [organisms objectAtIndex:indexPath.row];
     [cell setCellImageByState:[thisCreature getSpecies]];
+    NSLog(@"Hi I am %d", [thisCreature getSpecies]);
     return cell;
 }
 

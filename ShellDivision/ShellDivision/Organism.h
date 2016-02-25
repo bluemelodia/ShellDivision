@@ -9,9 +9,9 @@
 #import <Foundation/Foundation.h>
 
 enum species {
-    Snapper = 0,
-    Sea = 1,
-    Empty = 2
+    Empty = 0,
+    Snapper = 1,
+    Sea = 2,
 };
 
 @interface Organism : NSObject {

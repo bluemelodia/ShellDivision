@@ -19,6 +19,8 @@
 }
 
 static NSString *const GAME_STATE = @"GameState";
+// TODO: do this after the basic game logic done
+static NSString *const BOARD_STATE = @"BoardState";
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
     BoardViewController *boardVC = [[BoardViewController alloc] init];
@@ -40,7 +42,7 @@ static NSString *const GAME_STATE = @"GameState";
         [thisGame elapseTime];
         NSLog(@"%d %d", [thisGame getTurn], [thisGame getEra]);
         
-        // Synch test succeded
+        // Synch test succeeded - should do this after each turn, but you also have to save the board!
         NSData *dataToSave = [NSKeyedArchiver archivedDataWithRootObject:thisGame];
         [[NSUserDefaults standardUserDefaults] setObject:dataToSave forKey:GAME_STATE];
         [[NSUserDefaults standardUserDefaults] synchronize];
