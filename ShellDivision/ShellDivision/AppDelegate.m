@@ -7,6 +7,7 @@
 //
 
 #import "AppDelegate.h"
+#import "BoardViewController.h"
 
 @interface AppDelegate ()
 
@@ -16,7 +17,10 @@
 
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
-    // Override point for customization after application launch.
+    BoardViewController *boardVC = [[BoardViewController alloc] init];
+    
+    [self.window setRootViewController:boardVC];
+    [self.window makeKeyAndVisible];
     return YES;
 }
 
