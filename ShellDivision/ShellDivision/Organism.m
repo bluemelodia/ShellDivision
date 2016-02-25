@@ -30,4 +30,8 @@
     return sp;
 }
 
+- (void) setSpecies:(int) species {
+    sp = species;
+}
+
 @end

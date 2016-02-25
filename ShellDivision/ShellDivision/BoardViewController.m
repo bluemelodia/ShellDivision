@@ -59,13 +59,25 @@
 
 - (UICollectionViewCell *)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath {
     BoardCollectionViewCell *cell = [self.board dequeueReusableCellWithReuseIdentifier:@"BoardCell" forIndexPath:indexPath];
-    Organism *thisCreature = [organisms objectAtIndex:0];
+    Organism *thisCreature = [organisms objectAtIndex:indexPath.row];
     [cell setCellImageByState:[thisCreature getSpecies]];
     return cell;
 }
 
 - (void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath {
     BoardCollectionViewCell *cell = (BoardCollectionViewCell *) [self.board cellForItemAtIndexPath:indexPath];
+    Organism *thisCreature = [organisms objectAtIndex:indexPath.row];
+    // new organism can only spawn in an empty cell
+    if ([thisCreature getSpecies] == Empty) {
+        switch (turn) {
+            case P1:
+                [thisCreature setSpecies:Snapper];
+                break;
+            case P2:
+                [thisCreature setSpecies:Sea];
+                break;
+        }
+    }
 }
 
 /*

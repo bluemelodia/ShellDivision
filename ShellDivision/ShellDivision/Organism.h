@@ -20,5 +20,6 @@ enum species {
 
 - (void) spawn:(int) species;
 - (enum species) getSpecies;
+- (void) setSpecies:(int) species;
 
 @end
