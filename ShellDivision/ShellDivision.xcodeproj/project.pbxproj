@@ -18,6 +18,7 @@
 		4AFCE30A1C7EA0D3007E52B0 /* BoardCollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 4AFCE3081C7EA0D3007E52B0 /* BoardCollectionViewCell.xib */; };
 		4AFCE30E1C7EA669007E52B0 /* BoardViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4AFCE30C1C7EA669007E52B0 /* BoardViewController.m */; };
 		4AFCE30F1C7EA669007E52B0 /* BoardViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 4AFCE30D1C7EA669007E52B0 /* BoardViewController.xib */; };
+		4AFCE3121C7EB138007E52B0 /* Organism.m in Sources */ = {isa = PBXBuildFile; fileRef = 4AFCE3111C7EB138007E52B0 /* Organism.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -38,6 +39,8 @@
 		4AFCE30B1C7EA669007E52B0 /* BoardViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BoardViewController.h; sourceTree = "<group>"; };
 		4AFCE30C1C7EA669007E52B0 /* BoardViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BoardViewController.m; sourceTree = "<group>"; };
 		4AFCE30D1C7EA669007E52B0 /* BoardViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = BoardViewController.xib; sourceTree = "<group>"; };
+		4AFCE3101C7EB138007E52B0 /* Organism.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Organism.h; sourceTree = "<group>"; };
+		4AFCE3111C7EB138007E52B0 /* Organism.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Organism.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -101,6 +104,8 @@
 				4AFCE3081C7EA0D3007E52B0 /* BoardCollectionViewCell.xib */,
 				4AFCE30B1C7EA669007E52B0 /* BoardViewController.h */,
 				4AFCE30C1C7EA669007E52B0 /* BoardViewController.m */,
+				4AFCE3101C7EB138007E52B0 /* Organism.h */,
+				4AFCE3111C7EB138007E52B0 /* Organism.m */,
 				4AFCE30D1C7EA669007E52B0 /* BoardViewController.xib */,
 			);
 			name = Board;
@@ -179,6 +184,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				4AFCE3121C7EB138007E52B0 /* Organism.m in Sources */,
 				4AFCE30E1C7EA669007E52B0 /* BoardViewController.m in Sources */,
 				4AFCE2EE1C7E9D96007E52B0 /* ViewController.m in Sources */,
 				4AFCE3091C7EA0D3007E52B0 /* BoardCollectionViewCell.m in Sources */,
