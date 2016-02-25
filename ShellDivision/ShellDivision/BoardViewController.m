@@ -8,6 +8,7 @@
 
 #import "BoardViewController.h"
 #import "BoardCollectionViewCell.h"
+#import <QuartzCore/QuartzCore.h>
 
 @interface BoardViewController ()
 
@@ -46,7 +47,7 @@
 
 - (UICollectionViewCell *)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath {
     BoardCollectionViewCell *cell = [self.board dequeueReusableCellWithReuseIdentifier:@"BoardCell" forIndexPath:indexPath];
-    [cell setBackgroundColor:[UIColor redColor]];
+    [cell setBackgroundColor:[UIColor yellowColor]];
     return cell;
 }
 

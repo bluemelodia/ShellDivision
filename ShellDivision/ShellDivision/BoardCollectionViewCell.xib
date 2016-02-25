@@ -12,8 +12,31 @@
             <autoresizingMask key="autoresizingMask"/>
             <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
                 <rect key="frame" x="0.0" y="0.0" width="50" height="50"/>
+                <subviews>
+                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="qUE-Ui-9BL">
+                        <rect key="frame" x="0.0" y="0.0" width="50" height="50"/>
+                    </imageView>
+                </subviews>
                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
             </view>
+            <constraints>
+                <constraint firstItem="qUE-Ui-9BL" firstAttribute="top" secondItem="gTV-IL-0wX" secondAttribute="top" id="BR7-G4-grs"/>
+                <constraint firstItem="qUE-Ui-9BL" firstAttribute="leading" secondItem="gTV-IL-0wX" secondAttribute="leading" id="Cwn-WQ-bTO"/>
+                <constraint firstAttribute="trailing" secondItem="qUE-Ui-9BL" secondAttribute="trailing" id="JDP-sc-9fx"/>
+                <constraint firstAttribute="trailing" secondItem="qUE-Ui-9BL" secondAttribute="trailing" constant="1" id="bwK-V0-EjI"/>
+                <constraint firstAttribute="bottom" secondItem="qUE-Ui-9BL" secondAttribute="bottom" id="m08-1c-g5E"/>
+                <constraint firstItem="qUE-Ui-9BL" firstAttribute="top" secondItem="gTV-IL-0wX" secondAttribute="top" constant="1" id="rtW-Cw-Ich"/>
+                <constraint firstItem="qUE-Ui-9BL" firstAttribute="leading" secondItem="gTV-IL-0wX" secondAttribute="leading" constant="1" id="u1m-M0-ZJJ"/>
+                <constraint firstAttribute="bottom" secondItem="qUE-Ui-9BL" secondAttribute="bottom" constant="1" id="we7-RC-86i"/>
+            </constraints>
+            <variation key="default">
+                <mask key="constraints">
+                    <exclude reference="BR7-G4-grs"/>
+                    <exclude reference="Cwn-WQ-bTO"/>
+                    <exclude reference="JDP-sc-9fx"/>
+                    <exclude reference="m08-1c-g5E"/>
+                </mask>
+            </variation>
         </collectionViewCell>
     </objects>
 </document>
