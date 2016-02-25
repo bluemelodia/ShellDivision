@@ -33,8 +33,20 @@ static NSString *const GAME_STATE = @"GameState";
         NSData *data = [NSKeyedArchiver archivedDataWithRootObject:thisGame];
         [[NSUserDefaults standardUserDefaults] setObject:data forKey:GAME_STATE];
     } else {
-        
+        NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
+        NSData *data = [defaults objectForKey:GAME_STATE];
+        thisGame = [NSKeyedUnarchiver unarchiveObjectWithData:data];
+        NSLog(@"%d %d", [thisGame getTurn], [thisGame getEra]);
+        [thisGame elapseTime];
+        NSLog(@"%d %d", [thisGame getTurn], [thisGame getEra]);
+        NSData *data = [NSKeyedArchiver archivedDataWithRootObject:thisGame];
     }
+    
+    /*
+     NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
+     NSData *data = [defaults objectForKey:@"theKey"];
+     NSArray *arr = [NSKeyedUnarchiver unarchiveObjectWithData:data];
+     */
     
     return YES;
 }

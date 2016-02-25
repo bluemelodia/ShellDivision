@@ -10,8 +10,9 @@
 
 @implementation Game
 
+// advance the era every two turns (P1 and P2 both went)
 - (void) elapseTime {
-    era -= 5;
+    era -= 2;
 }
 
 // randomly choose who goes first
@@ -28,6 +29,14 @@
     }
 }
 
+- (id)initWithCoder:(NSCoder *)decoder {
+    NSMutableArray *gameInfo = [decoder decodeObjectForKey:@"GAME_INFO"];
+    turn = (int)[[gameInfo objectAtIndex:0] integerValue];
+    era = (int)[[gameInfo objectAtIndex:1] integerValue];
+    return self;
+}
+
+// allows saving into NSUserDefaults
 - (void)encodeWithCoder:(NSCoder *)aCoder {
     NSMutableArray *gameInfo = [[NSMutableArray alloc] initWithCapacity:2];
     NSNumber* wrappedTurn = [NSNumber numberWithInt:turn];
@@ -35,6 +44,14 @@
     NSNumber* wrappedEra = [NSNumber numberWithInt:era];
     [gameInfo insertObject:wrappedEra atIndex:1];
     [aCoder encodeObject:gameInfo forKey:@"GAME_INFO"];
+}
+
+- (int) getTurn {
+    return turn;
+}
+
+- (int) getEra {
+    return era;
 }
 
 @end

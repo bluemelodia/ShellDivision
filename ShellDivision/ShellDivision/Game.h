@@ -13,9 +13,13 @@ enum Turn {
     P2 = 1
 };
 
-static int era = 157;
+static int era = 160;
 static int turn = 0;
 
 @interface Game : NSObject
+
+- (int) getTurn;
+- (int) getEra;
+- (void) elapseTime;
 
 @end
