@@ -39,14 +39,12 @@ static NSString *const GAME_STATE = @"GameState";
         NSLog(@"%d %d", [thisGame getTurn], [thisGame getEra]);
         [thisGame elapseTime];
         NSLog(@"%d %d", [thisGame getTurn], [thisGame getEra]);
-        NSData *data = [NSKeyedArchiver archivedDataWithRootObject:thisGame];
+        
+        // Synch test succeded
+        NSData *dataToSave = [NSKeyedArchiver archivedDataWithRootObject:thisGame];
+        [[NSUserDefaults standardUserDefaults] setObject:dataToSave forKey:GAME_STATE];
+        [[NSUserDefaults standardUserDefaults] synchronize];
     }
-    
-    /*
-     NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
-     NSData *data = [defaults objectForKey:@"theKey"];
-     NSArray *arr = [NSKeyedUnarchiver unarchiveObjectWithData:data];
-     */
     
     return YES;
 }
