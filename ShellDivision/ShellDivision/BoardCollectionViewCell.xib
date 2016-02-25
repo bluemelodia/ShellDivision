@@ -37,6 +37,9 @@
                     <exclude reference="m08-1c-g5E"/>
                 </mask>
             </variation>
+            <connections>
+                <outlet property="cellImage" destination="qUE-Ui-9BL" id="eAc-Gd-GPy"/>
+            </connections>
         </collectionViewCell>
     </objects>
 </document>

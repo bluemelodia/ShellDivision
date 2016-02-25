@@ -21,6 +21,7 @@
 		4AFCE3121C7EB138007E52B0 /* Organism.m in Sources */ = {isa = PBXBuildFile; fileRef = 4AFCE3111C7EB138007E52B0 /* Organism.m */; };
 		4AFCE3151C7EB1AF007E52B0 /* Time.m in Sources */ = {isa = PBXBuildFile; fileRef = 4AFCE3141C7EB1AF007E52B0 /* Time.m */; };
 		4AFCE3181C7EB1BE007E52B0 /* Event.m in Sources */ = {isa = PBXBuildFile; fileRef = 4AFCE3171C7EB1BE007E52B0 /* Event.m */; };
+		4AFCE31B1C7EB6E0007E52B0 /* Game.m in Sources */ = {isa = PBXBuildFile; fileRef = 4AFCE31A1C7EB6E0007E52B0 /* Game.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -47,6 +48,8 @@
 		4AFCE3141C7EB1AF007E52B0 /* Time.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Time.m; sourceTree = "<group>"; };
 		4AFCE3161C7EB1BE007E52B0 /* Event.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Event.h; sourceTree = "<group>"; };
 		4AFCE3171C7EB1BE007E52B0 /* Event.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Event.m; sourceTree = "<group>"; };
+		4AFCE3191C7EB6E0007E52B0 /* Game.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Game.h; sourceTree = "<group>"; };
+		4AFCE31A1C7EB6E0007E52B0 /* Game.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Game.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -116,6 +119,8 @@
 				4AFCE3141C7EB1AF007E52B0 /* Time.m */,
 				4AFCE3161C7EB1BE007E52B0 /* Event.h */,
 				4AFCE3171C7EB1BE007E52B0 /* Event.m */,
+				4AFCE3191C7EB6E0007E52B0 /* Game.h */,
+				4AFCE31A1C7EB6E0007E52B0 /* Game.m */,
 				4AFCE30D1C7EA669007E52B0 /* BoardViewController.xib */,
 			);
 			name = Board;
@@ -199,6 +204,7 @@
 				4AFCE30E1C7EA669007E52B0 /* BoardViewController.m in Sources */,
 				4AFCE3181C7EB1BE007E52B0 /* Event.m in Sources */,
 				4AFCE2EE1C7E9D96007E52B0 /* ViewController.m in Sources */,
+				4AFCE31B1C7EB6E0007E52B0 /* Game.m in Sources */,
 				4AFCE3091C7EA0D3007E52B0 /* BoardCollectionViewCell.m in Sources */,
 				4AFCE2EB1C7E9D96007E52B0 /* AppDelegate.m in Sources */,
 				4AFCE2E81C7E9D96007E52B0 /* main.m in Sources */,

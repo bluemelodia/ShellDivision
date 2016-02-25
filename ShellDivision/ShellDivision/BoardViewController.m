@@ -9,6 +9,7 @@
 #import "BoardViewController.h"
 #import "BoardCollectionViewCell.h"
 #import "Organism.h"
+#import "Time.h"
 #import <QuartzCore/QuartzCore.h>
 
 @interface BoardViewController () {
@@ -58,7 +59,8 @@
 
 - (UICollectionViewCell *)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath {
     BoardCollectionViewCell *cell = [self.board dequeueReusableCellWithReuseIdentifier:@"BoardCell" forIndexPath:indexPath];
-    [cell setBackgroundColor:[UIColor yellowColor]];
+    Organism *thisCreature = [organisms objectAtIndex:0];
+    [cell setCellImageByState:[thisCreature getSpecies]];
     return cell;
 }
 

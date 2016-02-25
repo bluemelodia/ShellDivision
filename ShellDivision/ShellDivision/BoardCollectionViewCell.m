@@ -14,4 +14,24 @@
     // Initialization code
 }
 
+- (void)setCellImageByState:(int) state {
+    UIImage *image;
+    if (state == 0) {
+        image = [UIImage imageNamed:@"Snapper.imageset"];
+        [self.cellImage setImage:image];
+        [self.cellImage setAlpha:0.2];
+        self.userInteractionEnabled = YES;
+    } else if (state == 1) {
+        image = [UIImage imageNamed:@"Snapper.imageset"];
+        [self.cellImage setImage:image];
+        [self.cellImage setAlpha:1];
+        self.userInteractionEnabled = NO;
+    } else {
+        image = [UIImage imageNamed:@"Snapper.imageset"];
+        [self.cellImage setImage:image];
+        [self.cellImage setAlpha:1];
+        self.userInteractionEnabled = NO;
+    }
+}
+
 @end

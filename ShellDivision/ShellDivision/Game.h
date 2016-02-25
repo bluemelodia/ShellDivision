@@ -1,5 +1,5 @@
 //
-//  Time.h
+//  Game.h
 //  ShellDivision
 //
 //  Created by Melanie Lislie Hsu on 2/24/16.
@@ -8,14 +8,6 @@
 
 #import <Foundation/Foundation.h>
 
-enum Turn {
-    P1 = 0,
-    P2 = 1
-};
-
-static int era = 157;
-static int turn = 0;
-
-@interface Time : NSObject
+@interface Game : NSObject
 
 @end

@@ -14,8 +14,11 @@ enum species {
     Empty = 2
 };
 
-@interface Organism : NSObject
+@interface Organism : NSObject {
+    enum species sp;
+}
 
 - (void) spawn:(int) species;
+- (enum species) getSpecies;
 
 @end

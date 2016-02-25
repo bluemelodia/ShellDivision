@@ -9,5 +9,8 @@
 #import <UIKit/UIKit.h>
 
 @interface BoardCollectionViewCell : UICollectionViewCell
+@property (weak, nonatomic) IBOutlet UIImageView *cellImage;
+
+- (void)setCellImageByState:(int) state;
 
 @end
