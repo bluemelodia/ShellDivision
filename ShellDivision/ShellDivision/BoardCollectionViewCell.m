@@ -15,7 +15,7 @@
 }
 
 - (void)setCellImageByState:(int) state {
-    NSLog(@"State: %d", state);
+    //NSLog(@"State: %d", state);
     UIImage *image;
     if (state == 0) {
         image = [UIImage imageNamed:@"Shell.imageset"];

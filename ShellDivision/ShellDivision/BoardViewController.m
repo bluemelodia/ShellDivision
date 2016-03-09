@@ -43,7 +43,7 @@
     }
     for (int i = 0; i < 64; i++) {
         Organism *thisCreature = [organisms objectAtIndex:i];
-        NSLog(@"%d", [thisCreature getSpecies]);
+        //NSLog(@"%d", [thisCreature getSpecies]);
     }
 }
 
@@ -65,7 +65,7 @@
     BoardCollectionViewCell *cell = [self.board dequeueReusableCellWithReuseIdentifier:@"BoardCell" forIndexPath:indexPath];
     Organism *thisCreature = [organisms objectAtIndex:indexPath.row];
     [cell setCellImageByState:[thisCreature getSpecies]];
-    NSLog(@"Hi I am %d", [thisCreature getSpecies]);
+    //NSLog(@"Hi I am %d", [thisCreature getSpecies]);
     return cell;
 }
 
@@ -87,6 +87,46 @@
         }
         [cell setCellImageByState:[thisCreature getSpecies]];
     }
+    
+    // kill organisms
+    [self interCompetition];
+}
+
+/* 
+    0  1  2  3  4  5  6  7
+    8  9  10 11 12 13 14 15
+    16 17 18 19 20 21 22 23
+    24 25 26 27 28 29 30 31
+    32 33 34 35 36 37 38 39
+    40 41 42 43 44 45 46 47
+    48 49 50 51 52 53 54 55
+    56 57 58 59 60 61 62 63
+ */
+- (void)interCompetition {
+    NSMutableArray *toDie = [[NSMutableArray alloc] init];
+    for (int i = 0; i < 64; i++) {
+        Organism *thisCreature = [organisms objectAtIndex:i];
+        int species = [thisCreature getSpecies];
+        int competitors = 0;
+        if (species == Empty) continue;
+        if (i%8 != 0) { // get the left organism, can't get left if on the left edge
+            Organism *left = [organisms objectAtIndex:i-1];
+            NSLog(@"Left species: %d", [left getSpecies]);
+            if ([left getSpecies] != Empty && [left getSpecies] != species) {
+                competitors++;
+                NSLog(@"Left competitor");
+            }
+        } if (i%8 != 7) { // get the right organism, can't get right if on the right corner
+            Organism *right = [organisms objectAtIndex:i+1];
+            NSLog(@"Right species: %d", [right getSpecies]);
+            if ([right getSpecies] != Empty && [right getSpecies] != species) {
+                competitors++;
+                NSLog(@"Right competitor");
+            }
+        }
+        if (competitors > 0) NSLog(@"Competitors for %d: %d", i, competitors);
+    }
+    [self.board reloadData];
 }
 
 /*
