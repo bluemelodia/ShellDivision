@@ -111,19 +111,30 @@
         if (species == Empty) continue;
         if (i%8 != 0) { // get the left organism, can't get left if on the left edge
             Organism *left = [organisms objectAtIndex:i-1];
-            NSLog(@"Left species: %d", [left getSpecies]);
             if ([left getSpecies] != Empty && [left getSpecies] != species) {
                 competitors++;
                 NSLog(@"Left competitor");
             }
         } if (i%8 != 7) { // get the right organism, can't get right if on the right corner
             Organism *right = [organisms objectAtIndex:i+1];
-            NSLog(@"Right species: %d", [right getSpecies]);
             if ([right getSpecies] != Empty && [right getSpecies] != species) {
                 competitors++;
                 NSLog(@"Right competitor");
             }
+        } if (i-8 > 0) { // get the organism above it, can't go further up if in first row
+            Organism *up = [organisms objectAtIndex:i-8];
+            if ([up getSpecies] != Empty && [up getSpecies] != species) {
+                competitors++;
+                NSLog(@"Up competitor");
+            }
+        } if (i+8 < 56) { // get the organism below it, can't go further down if in the last row
+            Organism *down = [organisms objectAtIndex:i+8];
+            if ([down getSpecies] != Empty && [down getSpecies] != species) {
+                competitors++;
+                NSLog(@"Down competitor");
+            }
         }
+        
         if (competitors > 0) NSLog(@"Competitors for %d: %d", i, competitors);
     }
     [self.board reloadData];
