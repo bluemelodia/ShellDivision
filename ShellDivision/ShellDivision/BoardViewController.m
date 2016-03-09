@@ -169,8 +169,15 @@
                 competitors++;
             }
         }
-        
+        if (competitors > 5) [toDie addObject:[NSNumber numberWithInt:i]];
         if (competitors > 0) NSLog(@"Competitors for %d: %d", i, competitors);
+    }
+    
+    // kill the organisms that were outcompeted
+    for (int i = 0; i < [toDie count]; i++) {
+        NSNumber *dyingOrg = [toDie objectAtIndex:i];
+        Organism *deadOrg = [organisms objectAtIndex:[dyingOrg intValue]];
+        [deadOrg setSpecies:Empty];
     }
     [self.board reloadData];
 }
