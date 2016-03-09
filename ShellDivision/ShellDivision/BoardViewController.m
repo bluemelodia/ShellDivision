@@ -93,6 +93,7 @@
 }
 
 /* 
+ Grid indices:
     0  1  2  3  4  5  6  7
     8  9  10 11 12 13 14 15
     16 17 18 19 20 21 22 23
@@ -101,6 +102,9 @@
     40 41 42 43 44 45 46 47
     48 49 50 51 52 53 54 55
     56 57 58 59 60 61 62 63
+ 
+ If 5 or more competitors around the organism, the organism dies.
+ Competitors: species different from the organism directly surrounding it
  */
 - (void)interCompetition {
     NSMutableArray *toDie = [[NSMutableArray alloc] init];
@@ -113,25 +117,34 @@
             Organism *left = [organisms objectAtIndex:i-1];
             if ([left getSpecies] != Empty && [left getSpecies] != species) {
                 competitors++;
-                NSLog(@"Left competitor");
+                //NSLog(@"Left competitor");
             }
         } if (i%8 != 7) { // get the right organism, can't get right if on the right corner
             Organism *right = [organisms objectAtIndex:i+1];
             if ([right getSpecies] != Empty && [right getSpecies] != species) {
                 competitors++;
-                NSLog(@"Right competitor");
+                //NSLog(@"Right competitor");
             }
         } if (i-8 > 0) { // get the organism above it, can't go further up if in first row
             Organism *up = [organisms objectAtIndex:i-8];
             if ([up getSpecies] != Empty && [up getSpecies] != species) {
                 competitors++;
-                NSLog(@"Up competitor");
+                //NSLog(@"Up competitor");
             }
         } if (i+8 < 56) { // get the organism below it, can't go further down if in the last row
             Organism *down = [organisms objectAtIndex:i+8];
             if ([down getSpecies] != Empty && [down getSpecies] != species) {
                 competitors++;
-                NSLog(@"Down competitor");
+                //NSLog(@"Down competitor");
+            }
+        }
+        //int diag = i-9;
+        //NSLog(@"diagonal up:%d, index:%d", diag, i);
+        if (i%8 != 0 && (i-9) > 0) { // get diagonal up organism
+            Organism *diagonalUp = [organisms objectAtIndex:i-9];
+            if ([diagonalUp getSpecies] != Empty && [diagonalUp getSpecies] != species) {
+                competitors++;
+                //NSLog(@"Diagonal up competitor");
             }
         }
         
