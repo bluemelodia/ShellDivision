@@ -156,17 +156,19 @@
             }
         }
         int diag = i+7;
-        NSLog(@"diagonal left down:%d, index:%d", diag, i);
+        //NSLog(@"diagonal left down:%d, index:%d", diag, i);
         if (i%8 != 0 && (i+7) < 64) { // get diagonal left down organism
             Organism *ld = [organisms objectAtIndex:i+7];
             if ([ld getSpecies] != Empty && [ld getSpecies] != species) {
                 competitors++;
             }
         }
-        /*
-        if () { // get diagonal right down organism
-            
-        }*/
+        if (i%8 != 7 && (i+9) < 64) { // get diagonal right down organism
+            Organism *rd = [organisms objectAtIndex:i+9];
+            if ([rd getSpecies] != Empty && [rd getSpecies] != species) {
+                competitors++;
+            }
+        }
         
         if (competitors > 0) NSLog(@"Competitors for %d: %d", i, competitors);
     }
