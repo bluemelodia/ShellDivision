@@ -3,7 +3,7 @@
 Game Plan - Do NOT proceed to the next stage until the current stage is on both devices
 1) Implement basic game logic on both iOS and Android
   - state with single biome
-  - surround opponents from all sides, they die
+  - if an organism is surrounded by 5 or more members of a different species, it dies
   - board full, winner is the one with more organisms (can tie)
   - all members of opponent dies, you win 
 2) Implement eras and the mass extinctions
