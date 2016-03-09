@@ -78,11 +78,14 @@
         switch (turn) {
             case P1:
                 [thisCreature setSpecies:Snapper];
+                turn = P2;
                 break;
             case P2:
                 [thisCreature setSpecies:Sea];
+                turn = P1;
                 break;
         }
+        [cell setCellImageByState:[thisCreature getSpecies]];
     }
 }
 
