@@ -35,6 +35,16 @@
     [self.board registerNib:nib forCellWithReuseIdentifier:@"BoardCell"];
     organisms = [[NSMutableArray alloc] initWithCapacity:64];
     
+    // change the button appearances
+    self.eraLabel.layer.masksToBounds = YES;
+    self.eraLabel.layer.cornerRadius = 8;
+    self.snapperPopulation.layer.masksToBounds = YES;
+    self.snapperPopulation.layer.cornerRadius = 8;
+    self.seaPopulation.layer.masksToBounds = YES;
+    self.seaPopulation.layer.cornerRadius = 8;
+    self.restartButton.layer.masksToBounds = YES;
+    self.restartButton.layer.cornerRadius = 8;
+    
     // initialize the tile states to empty
     for (int i = 0; i < 64; i++) {
         Organism *newCreature = [[Organism alloc] init];

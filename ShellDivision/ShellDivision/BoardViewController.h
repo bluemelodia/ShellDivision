@@ -11,5 +11,9 @@
 @interface BoardViewController : UIViewController <UICollectionViewDataSource, UICollectionViewDelegate>
 
 @property (weak, nonatomic) IBOutlet UICollectionView *board;
+@property (weak, nonatomic) IBOutlet UILabel *eraLabel;
+@property (weak, nonatomic) IBOutlet UILabel *snapperPopulation;
+@property (weak, nonatomic) IBOutlet UILabel *seaPopulation;
+@property (weak, nonatomic) IBOutlet UIButton *restartButton;
 
 @end
