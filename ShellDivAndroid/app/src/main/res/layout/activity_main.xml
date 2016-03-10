@@ -39,6 +39,120 @@
         android:layout_alignParentEnd="true"
         android:src="@drawable/panel" />
 
+    <LinearLayout
+        android:orientation="horizontal"
+        android:layout_width="match_parent"
+        android:layout_height="120dp"
+        android:id="@+id/linearLayout"
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentEnd="true">
+
+        <LinearLayout
+            android:orientation="vertical"
+            android:layout_width="100dp"
+            android:layout_height="match_parent"
+            android:id="@+id/leftLayout"
+            android:layout_marginLeft="11dp"
+            android:layout_marginTop="12dp">
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="20dp"
+                android:textAppearance="?android:attr/textAppearanceMedium"
+                android:text="Era: 300mya"
+                android:id="@+id/eraLabel"
+                android:textSize="16dp"
+                android:textAlignment="center"
+                android:background="#004300"
+                android:textColor="#FFCC66" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="5dp"
+                android:textAppearance="?android:attr/textAppearanceSmall"
+                android:id="@+id/firstDivider"
+                android:layout_gravity="center_horizontal" />
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="20dp"
+                android:textAppearance="?android:attr/textAppearanceMedium"
+                android:text="Snappers: 0"
+                android:id="@+id/snapperPopulation"
+                android:textSize="16dp"
+                android:textAlignment="center"
+                android:background="#ffffff" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="5dp"
+                android:textAppearance="?android:attr/textAppearanceSmall"
+                android:id="@+id/secondDivider"
+                android:layout_gravity="center_horizontal" />
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="20dp"
+                android:textAppearance="?android:attr/textAppearanceMedium"
+                android:text="Sea: 0"
+                android:id="@+id/seaPopulation"
+                android:textSize="16dp"
+                android:textAlignment="center"
+                android:background="#ffffff" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="5dp"
+                android:textAppearance="?android:attr/textAppearanceSmall"
+                android:id="@+id/thirdDivider"
+                android:layout_gravity="center_horizontal" />
+
+            <Button
+                style="?android:attr/buttonStyleSmall"
+                android:layout_width="match_parent"
+                android:layout_height="20dp"
+                android:text="Restart"
+                android:radius="8dp"
+                android:id="@+id/restartButton"
+                android:background="#ff0000"
+                android:textColor="#ffffff" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:orientation="vertical"
+            android:layout_width="119dp"
+            android:layout_height="match_parent"
+            android:id="@+id/midLayout">
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:orientation="vertical"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:id="@+id/rightLayout">
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="22dp"
+                android:textAppearance="?android:attr/textAppearanceMedium"
+                android:text="Whose Turn"
+                android:id="@+id/turnLabel"
+                android:textAlignment="center"
+                android:background="#FFCC66"
+                android:textColor="#804000" />
+
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/nextTurn"
+                android:src="@drawable/shell" />
+        </LinearLayout>
+
+    </LinearLayout>
+
     <ImageView
         android:id="@+id/beachView"
         android:layout_width="wrap_content"
@@ -67,4 +181,5 @@
         android:layout_marginBottom="120dp"
         android:layout_below="@+id/topView"
         ></GridView>
+
 </RelativeLayout>
