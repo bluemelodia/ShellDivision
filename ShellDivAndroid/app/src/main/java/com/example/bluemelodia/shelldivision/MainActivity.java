@@ -90,55 +90,16 @@ public class MainActivity extends AppCompatActivity {
                             Organism org = adapter.getTileState(Integer.valueOf(i));
                             ImageView gridChild = (ImageView) gridView.getChildAt(i);
                             if (org.getSpecies().equals(Organism.Species.Snapper)) {
-                                Log.i("TO SNAPPER", String.valueOf(i));
                                 org.setSpecies(Organism.Species.Sea);
                                 adapter.setTileState(Integer.valueOf(i), org);
                                 gridChild.setImageResource(R.drawable.sea);
                             } else if (org.getSpecies().equals(Organism.Species.Sea)) {
-                                Log.i("TO SEA", String.valueOf(i));
                                 org.setSpecies(Organism.Species.Snapper);
                                 adapter.setTileState(Integer.valueOf(i), org);
                                 gridChild.setImageResource(R.drawable.snapper);
                             }
                         }
                     }
-
-                    /*for (int i = 0; i < toDie.size(); i++) {
-                        Organism deadOrg = adapter.getTileState(toDie.get(i));
-                        Log.i("Dead org:", String.valueOf(toDie.get(i)));
-                        if (deadOrg.getSpecies().equals(Organism.Species.Snapper)) {
-                            deadOrg.setSpecies(Organism.Species.Sea);
-                            adapter.setTileState(toDie.get(i).intValue(), deadOrg);
-                            ImageView viewToMod = (ImageView) adapter.getView(toDie.get(i).intValue(), null, gridView);
-                            viewToMod.setBackgroundColor(000000);
-                            viewToMod.setImageResource(R.drawable.sea);
-                            Log.i("Snapper->Sea", String.valueOf(toDie.get(i)));
-                        } else if (deadOrg.getSpecies().equals(Organism.Species.Sea)) {
-                            deadOrg.setSpecies(Organism.Species.Snapper);
-                            adapter.setTileState(toDie.get(i).intValue(), deadOrg);
-                            ImageView viewToMod = (ImageView) adapter.getView(toDie.get(i).intValue(), null, gridView);
-                            viewToMod.setBackgroundColor(000000);
-                            viewToMod.setImageResource(R.drawable.snapper);
-                            Log.i("Sea->Snapper", String.valueOf(toDie.get(i)));
-                        }
-                    }
-                    adapter.getView(0, null, gridView);*/
-
-                    /*
-                    // convert the organisms that were outcompeted
-        for (int i = 0; i < toDie.size(); i++) {
-            Organism deadOrg = getTileState(toDie.get(i));
-            Log.i("Dead org:", String.valueOf(toDie.get(i)));
-            if (deadOrg.getSpecies().equals(Organism.Species.Snapper)) {
-                deadOrg.setSpecies(Organism.Species.Sea);
-            } else if (deadOrg.getSpecies().equals(Organism.Species.Sea)) {
-                deadOrg.setSpecies(Organism.Species.Snapper);
-            }
-            setTileState(toDie.get(i).intValue(), deadOrg);
-            //getView(toDie.get(i).intValue(), null, null);
-        }
-
-                     */
 
                     adapter.countPopulation();
                     snapperPopulation.setText(String.valueOf("Snappers: " + adapter.getSnapperPopulation()));

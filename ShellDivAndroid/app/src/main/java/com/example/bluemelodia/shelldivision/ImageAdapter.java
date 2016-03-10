@@ -100,24 +100,28 @@ public class ImageAdapter extends BaseAdapter {
                 Organism left = getTileState(i-1);
                 if (!left.getSpecies().equals(Organism.Species.Empty) && !left.getSpecies().equals(organism.getSpecies())) {
                     competitors++;
+                    Log.i("Left comp for", String.valueOf(i));
                 }
             }
             if (i%8 != 7) { // right organism
                 Organism right = getTileState(i+1);
                 if (!right.getSpecies().equals(Organism.Species.Empty) && !right.getSpecies().equals(organism.getSpecies())) {
                     competitors++;
+                    Log.i("Right comp for", String.valueOf(i));
                 }
             }
-            if (i-8 > 0) { // above organism
+            if (i-8 >= 0) { // above organism
                 Organism up = getTileState(i-8);
                 if (!up.getSpecies().equals(Organism.Species.Empty) && !up.getSpecies().equals(organism.getSpecies())) {
                     competitors++;
+                    Log.i("Up comp for", String.valueOf(i));
                 }
             }
-            if (i+8 < 56) { // below organism
+            if (i+8 < 64 && i < 56) { // below organism 
                 Organism down = getTileState(i+8);
                 if (!down.getSpecies().equals(Organism.Species.Empty) && !down.getSpecies().equals(organism.getSpecies())) {
                     competitors++;
+                    Log.i("Down comp for", String.valueOf(i));
                 }
             }
             Log.i("Competitors:", String.valueOf(competitors));
