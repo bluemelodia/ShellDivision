@@ -103,8 +103,8 @@
     48 49 50 51 52 53 54 55
     56 57 58 59 60 61 62 63
  
- If 5 or more competitors around the organism, the organism dies.
- Competitors: species different from the organism directly surrounding it
+ If 5 or more competitors around the organism, the organism is converted to the other species.
+ Competitors: species different from the organism directly surrounding it.
  */
 - (void)interCompetition {
     NSMutableArray *toDie = [[NSMutableArray alloc] init];
@@ -117,38 +117,29 @@
             Organism *left = [organisms objectAtIndex:i-1];
             if ([left getSpecies] != Empty && [left getSpecies] != species) {
                 competitors++;
-                //NSLog(@"Left competitor");
             }
         } if (i%8 != 7) { // get the right organism, can't get right if on the right corner
             Organism *right = [organisms objectAtIndex:i+1];
             if ([right getSpecies] != Empty && [right getSpecies] != species) {
                 competitors++;
-                //NSLog(@"Right competitor");
             }
         } if (i-8 > 0) { // get the organism above it, can't go further up if in first row
             Organism *up = [organisms objectAtIndex:i-8];
             if ([up getSpecies] != Empty && [up getSpecies] != species) {
                 competitors++;
-                //NSLog(@"Up competitor");
             }
         } if (i+8 < 56) { // get the organism below it, can't go further down if in the last row
             Organism *down = [organisms objectAtIndex:i+8];
             if ([down getSpecies] != Empty && [down getSpecies] != species) {
                 competitors++;
-                //NSLog(@"Down competitor");
             }
         }
-        //int diag = i-9;
-        //NSLog(@"diagonal up:%d, index:%d", diag, i);
         if (i%8 != 0 && (i-9) > 0) { // get diagonal left up organism
             Organism *lu = [organisms objectAtIndex:i-9];
             if ([lu getSpecies] != Empty && [lu getSpecies] != species) {
                 competitors++;
-                //NSLog(@"Diagonal up competitor");
             }
         }
-        //int diag = i-7;
-        //NSLog(@"diagonal up:%d, index:%d", diag, i);
         if (i%8 != 7 && (i-7) > 0) { // get diagonal right up organism
             Organism *ru = [organisms objectAtIndex:i-7];
             if ([ru getSpecies] != Empty && [ru getSpecies] != species) {
@@ -156,7 +147,6 @@
             }
         }
         int diag = i+7;
-        //NSLog(@"diagonal left down:%d, index:%d", diag, i);
         if (i%8 != 0 && (i+7) < 64) { // get diagonal left down organism
             Organism *ld = [organisms objectAtIndex:i+7];
             if ([ld getSpecies] != Empty && [ld getSpecies] != species) {
@@ -169,15 +159,19 @@
                 competitors++;
             }
         }
-        if (competitors > 5) [toDie addObject:[NSNumber numberWithInt:i]];
+        if (competitors >= 5) [toDie addObject:[NSNumber numberWithInt:i]];
         if (competitors > 0) NSLog(@"Competitors for %d: %d", i, competitors);
     }
     
-    // kill the organisms that were outcompeted
+    // convert the organisms that were outcompeted
     for (int i = 0; i < [toDie count]; i++) {
         NSNumber *dyingOrg = [toDie objectAtIndex:i];
         Organism *deadOrg = [organisms objectAtIndex:[dyingOrg intValue]];
-        [deadOrg setSpecies:Empty];
+        if ([deadOrg getSpecies] == Snapper) {
+            [deadOrg setSpecies:Sea];
+        } else if ([deadOrg getSpecies] == Sea) {
+            [deadOrg setSpecies:Snapper];
+        }
     }
     [self.board reloadData];
 }

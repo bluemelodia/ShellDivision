@@ -20,7 +20,7 @@
     if (state == 0) {
         image = [UIImage imageNamed:@"Shell.imageset"];
         [self.cellImage setImage:image];
-        [self.cellImage setAlpha:0.2];
+        [self.cellImage setAlpha:0.3];
         self.userInteractionEnabled = YES;
     } else if (state == 1) {
         image = [UIImage imageNamed:@"Snapper.imageset"];
