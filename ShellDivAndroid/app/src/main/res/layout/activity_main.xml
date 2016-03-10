@@ -122,7 +122,7 @@
 
         <LinearLayout
             android:orientation="vertical"
-            android:layout_width="119dp"
+            android:layout_width="113dp"
             android:layout_height="match_parent"
             android:id="@+id/midLayout">
 
@@ -132,17 +132,21 @@
             android:orientation="vertical"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:id="@+id/rightLayout">
+            android:id="@+id/rightLayout"
+            android:layout_marginLeft="0dp"
+            android:layout_marginRight="11dp">
 
             <TextView
                 android:layout_width="match_parent"
-                android:layout_height="22dp"
+                android:layout_height="20dp"
                 android:textAppearance="?android:attr/textAppearanceMedium"
                 android:text="Whose Turn"
                 android:id="@+id/turnLabel"
                 android:textAlignment="center"
                 android:background="#FFCC66"
-                android:textColor="#804000" />
+                android:textColor="#804000"
+                android:layout_marginTop="5dp"
+                android:textSize="16dp" />
 
             <ImageView
                 android:layout_width="wrap_content"
