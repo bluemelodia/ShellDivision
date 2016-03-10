@@ -232,7 +232,7 @@ static NSString *const BOARD_STATE = @"BoardState";
                 break;
             case 3:
                 victor = @"Total Extinction";
-                message = @"Unfortunately, both species have died out...";
+                message = @"Unfortunately, neither of you made it to the modern era...";
                 break;
             case 4:
                 victor = @"No Clear Victor";
