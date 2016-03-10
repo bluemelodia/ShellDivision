@@ -218,6 +218,9 @@ static NSString *const BOARD_STATE = @"BoardState";
             [deadOrg setSpecies:Snapper];
         }
     }
+    game.era = [game elapseTime];
+    [self.eraLabel setText:[NSString stringWithFormat:@"%d mya", game.era]];
+    
     if ([self checkWin]) {
         NSString *message;
         NSString *victor;
@@ -243,8 +246,6 @@ static NSString *const BOARD_STATE = @"BoardState";
         [self.details setText:message];
         self.board.userInteractionEnabled = NO;
     } else {
-        game.era = [game elapseTime];
-        [self.eraLabel setText:[NSString stringWithFormat:@"%d mya", game.era]];
         [self countSpecies];
         [self displayNextTurn];
         // update the game object
@@ -272,6 +273,7 @@ static NSString *const BOARD_STATE = @"BoardState";
 }
 
 - (BOOL) checkWin {
+    NSLog(@"ERA: %d", game.era);
     if ([self isGridFull]) {
         return true;
     } else if (game.era <= 0) {
