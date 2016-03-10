@@ -219,7 +219,26 @@ static NSString *const BOARD_STATE = @"BoardState";
         }
     }
     if ([self checkWin]) {
-        NSLog(@"You won!");
+        NSString *message;
+        NSString *victor;
+        switch ([self determineVictor]) {
+            case 1:
+                victor = @"Snappers Win";
+                message = @"Snapping turtles have become the dominant species!";
+                break;
+            case 2:
+                victor = @"Sea Turtles Win";
+                message = @"Sea turtles rule!";
+                break;
+            case 3:
+                victor = @"Total Extinction";
+                message = @"Unfortunately, both species have died out...";
+                break;
+            case 4:
+                victor = @"No Clear Victor";
+                message = @"Looks like you'll have to share!";
+                break;
+        }
     } else {
         game.era = [game elapseTime];
         [self.eraLabel setText:[NSString stringWithFormat:@"%d mya", game.era]];
@@ -235,7 +254,26 @@ static NSString *const BOARD_STATE = @"BoardState";
     }
 }
 
+- (int) determineVictor {
+    int snapCount = 0;
+    int seaCount = 0;
+    for (int i = 0; i < 64; i++) {
+        Organism *thisCreature = [organisms objectAtIndex:i];
+        if ([thisCreature getSpecies] == Snapper) snapCount++;
+        else if ([thisCreature getSpecies] == Sea) seaCount++;
+    }
+    if (snapCount > seaCount) return 1;
+    else if (seaCount > snapCount) return 2;
+    else if (seaCount == snapCount == 0) return 3;
+    else return 4;
+}
+
 - (BOOL) checkWin {
+    if ([self isGridFull]) {
+        return true;
+    } else if (game.era <= 0) {
+        return true;
+    }
     return false;
 }
 
