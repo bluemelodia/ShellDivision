@@ -53,9 +53,8 @@
     <GridView
         android:layout_width="260dp"
         android:layout_height="260dp"
-        android:columnWidth="90dp"
-        android:numColumns="auto_fit"
-        android:verticalSpacing="20dp"
+        android:numColumns="8"
+        android:verticalSpacing="1dp"
         android:horizontalSpacing="10dp"
         android:stretchMode="columnWidth"
         android:gravity="center"
