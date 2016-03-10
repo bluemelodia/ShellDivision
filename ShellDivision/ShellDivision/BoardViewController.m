@@ -188,7 +188,6 @@ static NSString *const BOARD_STATE = @"BoardState";
                 competitors++;
             }
         }
-        int diag = i+7;
         if (i%8 != 0 && (i+7) < 64) { // get diagonal left down organism
             Organism *ld = [organisms objectAtIndex:i+7];
             if ([ld getSpecies] != Empty && [ld getSpecies] != species) {
@@ -217,13 +216,25 @@ static NSString *const BOARD_STATE = @"BoardState";
     }
     game.era = [game elapseTime];
     [self.eraLabel setText:[NSString stringWithFormat:@"%d mya", game.era]];
-    
+    [self countSpecies];
     // update the game object
     NSData *savedData = [NSKeyedArchiver archivedDataWithRootObject:game];
     [[NSUserDefaults standardUserDefaults]setObject:savedData forKey:GAME_STATE];
     [[NSUserDefaults standardUserDefaults]synchronize];
     
     [self.board reloadData];
+}
+
+- (void) countSpecies {
+    int snapCount = 0;
+    int seaCount = 0;
+    for (int i = 0; i < 64; i++) {
+        Organism *thisCreature = [organisms objectAtIndex:i];
+        if ([thisCreature getSpecies] == Snapper) snapCount++;
+        else if ([thisCreature getSpecies] == Sea) seaCount++;
+    }
+    [self.snapperPopulation setText:[NSString stringWithFormat:@"Snapper: %d", snapCount]];
+    [self.seaPopulation setText:[NSString stringWithFormat:@"Sea: %d", seaCount]];
 }
 
 /*
