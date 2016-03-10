@@ -30,7 +30,6 @@
         android:layout_width="wrap_content"
         android:layout_height="120dp"
         android:id="@+id/bottomView"
-        android:layout_above="@+id/beachView"
         android:scaleType="fitXY"
         android:layout_alignParentBottom="true"
         android:layout_alignParentLeft="true"
@@ -46,19 +45,23 @@
         android:layout_toEndOf="@+id/textView"
         android:layout_alignParentEnd="true"
         android:layout_alignParentStart="true"
+        android:layout_alignBottom="@id/bottomView"
+        android:layout_marginBottom="120dp"
         android:scaleType="fitXY"
         android:layout_below="@+id/topView"
         android:background="#cc7676" />
 
     <GridView
-        android:layout_width="260dp"
+        android:layout_width="wrap_content"
         android:layout_height="260dp"
         android:numColumns="8"
         android:verticalSpacing="1dp"
-        android:horizontalSpacing="10dp"
+        android:horizontalSpacing="2dp"
         android:stretchMode="columnWidth"
         android:gravity="center"
         android:layout_centerInParent="true"
+        android:layout_alignBottom="@id/bottomView"
+        android:layout_marginBottom="120dp"
         android:layout_below="@+id/topView"
         android:background="#f09efb"
         android:id="@+id/gridView"></GridView>
