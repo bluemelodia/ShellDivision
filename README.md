@@ -1,5 +1,10 @@
 # Testudo
 ```
+Progress: 
+iOS -> Stage 1 DONE!
+Android -> not started
+
+
 Game Plan - Do NOT proceed to the next stage until the current stage is on both devices
 1) Implement basic game logic on both iOS and Android
   - if an organism is surrounded by 5 or more members of a different species, it "defects" to the other species
