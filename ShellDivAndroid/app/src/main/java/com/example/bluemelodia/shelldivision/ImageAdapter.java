@@ -75,18 +75,22 @@ public class ImageAdapter extends BaseAdapter {
         }
         // use the current state of the tile to pick which image goes into it
         Organism organism = tileStates.get(position);
+        //Log.i("SWITCH ORG AT POSITION:", String.valueOf(position));
         if (organism.getSpecies() == Organism.Species.Empty) {
             imageView.setImageResource(R.drawable.shell);
+            //Log.i("Switched:", "EMPTY");
         } else if (organism.getSpecies() == Organism.Species.Snapper) {
             imageView.setImageResource(R.drawable.snapper);
+            //Log.i("Switched:", "SNAPPER->SEA");
         } else if (organism.getSpecies() == Organism.Species.Sea) {
             imageView.setImageResource(R.drawable.sea);
+            //Log.i("Switched:", "SEA->SNAPPER");
         }
         return imageView;
     }
 
     // eradication methods
-    public void interCompetition() {
+    public ArrayList<Integer> interCompetition() {
         ArrayList<Integer> toDie = new ArrayList<>();
         for (int i = 0; i < 64; i++) {
             Organism organism = getTileState(i);
@@ -120,17 +124,7 @@ public class ImageAdapter extends BaseAdapter {
             if (competitors > 3) toDie.add(Integer.valueOf(i));
         }
 
-        // convert the organisms that were outcompeted
-        for (int i = 0; i < toDie.size(); i++) {
-            Organism deadOrg = getTileState(toDie.get(i));
-            Log.i("Dead org:", String.valueOf(toDie.get(i)));
-            if (deadOrg.getSpecies().equals(Organism.Species.Snapper)) {
-                deadOrg.setSpecies(Organism.Species.Sea);
-            } else if (deadOrg.getSpecies().equals(Organism.Species.Sea)) {
-                deadOrg.setSpecies(Organism.Species.Snapper);
-            }
-            setTileState(toDie.get(i), deadOrg);
-        }
+        return toDie;
     }
 
     // count population methods
