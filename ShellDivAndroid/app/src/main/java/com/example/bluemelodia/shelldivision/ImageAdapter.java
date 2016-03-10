@@ -19,6 +19,10 @@ import java.util.Map;
 public class ImageAdapter extends BaseAdapter {
     private Context mContext;
 
+    private static final int Empty = 0;
+    private static final int Snapper = 1;
+    private static final int Sea = 2;
+
     public ImageAdapter(Context c) {
         mContext = c;
     }
