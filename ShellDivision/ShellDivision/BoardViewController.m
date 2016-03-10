@@ -266,6 +266,30 @@ static NSString *const BOARD_STATE = @"BoardState";
     return true;
 }
 
+- (IBAction)restartGame:(id)sender {
+    game.turn = P1;
+    game.era = 160;
+    // initialize the tile states to empty
+    for (int i = 0; i < 64; i++) {
+        Organism *thisCreature = [organisms objectAtIndex:i];
+        [thisCreature setSpecies:Empty];
+    }
+    
+    [self.eraLabel setText:[NSString stringWithFormat:@"%d mya", game.era]];
+    [self countSpecies];
+    [self displayNextTurn];
+    
+    // update the game object
+    NSData *savedData = [NSKeyedArchiver archivedDataWithRootObject:game];
+    [[NSUserDefaults standardUserDefaults]setObject:savedData forKey:GAME_STATE];
+    NSData *savedOrgData = [NSKeyedArchiver archivedDataWithRootObject:organisms];
+    [[NSUserDefaults standardUserDefaults] setObject:savedOrgData forKey:BOARD_STATE];
+    [[NSUserDefaults standardUserDefaults]synchronize];
+    
+    [self.board reloadData];
+}
+
+
 /*
 #pragma mark - Navigation
 
