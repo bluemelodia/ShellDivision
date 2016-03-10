@@ -1,5 +1,6 @@
 package com.example.bluemelodia.shelldivision;
 
+import android.media.Image;
 import android.net.Uri;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
@@ -26,6 +27,7 @@ public class MainActivity extends AppCompatActivity {
     TextView seaPopulation;
     TextView event;
     TextView details;
+    ImageView nextTurn;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -41,6 +43,8 @@ public class MainActivity extends AppCompatActivity {
         seaPopulation = (TextView) findViewById(R.id.seaPopulation);
         event = (TextView) findViewById(R.id.event);
         details = (TextView) findViewById(R.id.details);
+        nextTurn = (ImageView) findViewById(R.id.nextTurn);
+        nextTurn.setImageResource(R.drawable.snapper);
 
         final GridView gridView = (GridView) findViewById(R.id.gridView);
         // set a custom adapter (ImageAdapter) as the source for all items to be displayed in the grid
@@ -62,6 +66,7 @@ public class MainActivity extends AppCompatActivity {
                         viewToChange.setImageResource(R.drawable.snapper);
 
                         game.setTurn(Game.Turn.P2);
+                        nextTurn.setImageResource(R.drawable.sea);
                     } else {
                         organism.setSpecies(Organism.Species.Sea);
                         adapter.setTileState(position, organism);
@@ -71,6 +76,7 @@ public class MainActivity extends AppCompatActivity {
                         viewToChange.setImageResource(R.drawable.sea);
 
                         game.setTurn(Game.Turn.P1);
+                        nextTurn.setImageResource(R.drawable.snapper);
                     }
                 }
             }
