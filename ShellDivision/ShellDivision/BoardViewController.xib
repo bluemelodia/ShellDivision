@@ -246,9 +246,9 @@
             </constraints>
             <variation key="default">
                 <mask key="constraints">
+                    <exclude reference="wEL-AO-t6T"/>
                     <exclude reference="Mqw-Vw-RFR"/>
                     <exclude reference="ZPO-pc-sxf"/>
-                    <exclude reference="wEL-AO-t6T"/>
                     <exclude reference="uZk-Qc-EJI"/>
                 </mask>
             </variation>

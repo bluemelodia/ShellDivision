@@ -49,8 +49,8 @@ public class ImageAdapter extends BaseAdapter {
         } else {
             imageView = (ImageView) convertView;
         }
-        int color = 0xFF0000FF; // Transparent
-        imageView.setBackgroundColor(color);
+        //int color = 0xFF0000FF; // Transparent
+        //imageView.setBackgroundColor(color);
         return imageView;
     }
 }

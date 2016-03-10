@@ -16,31 +16,33 @@
         android:id="@+id/textView" />
 
     <ImageView
+        android:id="@+id/topView"
         android:layout_width="wrap_content"
         android:layout_height="100dp"
-        android:id="@+id/topView"
         android:layout_alignParentTop="true"
         android:layout_alignParentLeft="true"
         android:layout_alignParentStart="true"
         android:layout_alignParentEnd="true"
         android:scaleType="fitXY"
-        android:background="#2b7adb" />
+        android:background="#999999"
+        android:padding="4dp"
+        android:src="@drawable/dna" />
 
     <ImageView
+        android:id="@+id/bottomView"
         android:layout_width="wrap_content"
         android:layout_height="120dp"
-        android:id="@+id/bottomView"
         android:scaleType="fitXY"
         android:layout_alignParentBottom="true"
         android:layout_alignParentLeft="true"
         android:layout_alignParentStart="true"
         android:layout_alignParentEnd="true"
-        android:background="#50ca18" />
+        android:src="@drawable/panel" />
 
     <ImageView
+        android:id="@+id/beachView"
         android:layout_width="wrap_content"
         android:layout_height="260dp"
-        android:id="@+id/beachView"
         android:layout_toRightOf="@+id/textView"
         android:layout_toEndOf="@+id/textView"
         android:layout_alignParentEnd="true"
@@ -49,9 +51,10 @@
         android:layout_marginBottom="120dp"
         android:scaleType="fitXY"
         android:layout_below="@+id/topView"
-        android:background="#cc7676" />
+        android:src="@drawable/beach" />
 
     <GridView
+        android:id="@+id/gridView"
         android:layout_width="wrap_content"
         android:layout_height="260dp"
         android:numColumns="8"
@@ -63,6 +66,5 @@
         android:layout_alignBottom="@id/bottomView"
         android:layout_marginBottom="120dp"
         android:layout_below="@+id/topView"
-        android:background="#f09efb"
-        android:id="@+id/gridView"></GridView>
+        ></GridView>
 </RelativeLayout>
