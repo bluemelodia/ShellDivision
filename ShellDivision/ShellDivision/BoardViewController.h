@@ -17,5 +17,7 @@
 @property (weak, nonatomic) IBOutlet UIButton *restartButton;
 @property (weak, nonatomic) IBOutlet UILabel *turnLabel;
 @property (weak, nonatomic) IBOutlet UIImageView *nextTurn;
+@property (weak, nonatomic) IBOutlet UILabel *event;
+@property (weak, nonatomic) IBOutlet UILabel *details;
 
 @end

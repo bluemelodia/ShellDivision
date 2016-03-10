@@ -55,7 +55,7 @@ static NSString *const BOARD_STATE = @"BoardState";
     if (![[NSUserDefaults standardUserDefaults]dataForKey:GAME_STATE]) {
         game = [[Game alloc] init];
         game.turn = P1;
-        game.era = 300;
+        game.era = 10;
         NSLog(@"NEW GAME");
         NSData *data = [NSKeyedArchiver archivedDataWithRootObject:game];
         [[NSUserDefaults standardUserDefaults] setObject:data forKey:GAME_STATE];
@@ -239,6 +239,9 @@ static NSString *const BOARD_STATE = @"BoardState";
                 message = @"Looks like you'll have to share!";
                 break;
         }
+        [self.event setText:victor];
+        [self.details setText:message];
+        self.board.userInteractionEnabled = NO;
     } else {
         game.era = [game elapseTime];
         [self.eraLabel setText:[NSString stringWithFormat:@"%d mya", game.era]];
@@ -311,8 +314,11 @@ static NSString *const BOARD_STATE = @"BoardState";
 }
 
 - (IBAction)restartGame:(id)sender {
+    self.board.userInteractionEnabled = YES;
+    [self.event setText:@""];
+    [self.details setText:@""];
     game.turn = P1;
-    game.era = 300;
+    game.era = 10;
     // initialize the tile states to empty
     for (int i = 0; i < 64; i++) {
         Organism *thisCreature = [organisms objectAtIndex:i];
