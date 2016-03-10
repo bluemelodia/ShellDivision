@@ -239,6 +239,7 @@ static NSString *const EVENT_DETAIL = @"EventDetail";
     }
     game.era = [game elapseTime];
     [self.eraLabel setText:[NSString stringWithFormat:@"%d mya", game.era]];
+    [self countSpecies];
     
     if ([self checkWin]) {
         NSString *message;
@@ -268,7 +269,6 @@ static NSString *const EVENT_DETAIL = @"EventDetail";
         [[NSUserDefaults standardUserDefaults]synchronize];
         self.board.userInteractionEnabled = NO;
     } else {
-        [self countSpecies];
         [self displayNextTurn];
         // update the game object
         NSData *savedData = [NSKeyedArchiver archivedDataWithRootObject:game];
