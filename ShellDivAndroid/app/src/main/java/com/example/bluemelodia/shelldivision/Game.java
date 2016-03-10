@@ -15,8 +15,16 @@ public class Game {
         return turn;
     }
 
+    public void setTurn(Turn t) {
+        turn = t;
+    }
+
     public int getEra() {
         return era;
+    }
+
+    public void setEra(int e) {
+        era = e;
     }
 
     public int elapseTime() {

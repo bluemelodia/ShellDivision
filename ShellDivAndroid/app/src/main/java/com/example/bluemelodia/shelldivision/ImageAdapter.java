@@ -22,7 +22,7 @@ public class ImageAdapter extends BaseAdapter {
     private static final int Snapper = 1;
     private static final int Sea = 2;
 
-    private List<Organism> tileStates = new ArrayList<>();
+    public List<Organism> tileStates = new ArrayList<>();
 
     public ImageAdapter(Context c) {
         mContext = c;
