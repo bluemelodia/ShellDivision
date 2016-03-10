@@ -12,8 +12,12 @@
 #import "Game.h"
 #import <QuartzCore/QuartzCore.h>
 
+static NSString *const GAME_STATE = @"GameState";
+static NSString *const BOARD_STATE = @"BoardState";
+
 @interface BoardViewController () {
     NSMutableArray *organisms;
+    Game *game;
 }
 
 @end
@@ -55,6 +59,31 @@
         Organism *thisCreature = [organisms objectAtIndex:i];
         //NSLog(@"%d", [thisCreature getSpecies]);
     }
+    
+    // want to save the Game state in-between runs
+    if (![[NSUserDefaults standardUserDefaults]dataForKey:GAME_STATE]) {
+        game = [[Game alloc] init];
+        game.turn = P1;
+        game.era = 160;
+        NSLog(@"NEW GAME");
+        NSData *data = [NSKeyedArchiver archivedDataWithRootObject:game];
+        [[NSUserDefaults standardUserDefaults] setObject:data forKey:GAME_STATE];
+    } else {
+        NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
+        NSData *data = [defaults objectForKey:GAME_STATE];
+        game = [NSKeyedUnarchiver unarchiveObjectWithData:data];
+        game.turn = [game getTurn];
+        game.era = [game getEra];
+        //NSLog(@"%d %d", [thisGame getTurn], [thisGame getEra]);
+        //[thisGame elapseTime];
+        //NSLog(@"%d %d", [thisGame getTurn], [thisGame getEra]);
+        
+        // Synch test succeeded - should do this after each turn, but you also have to save the board!
+        NSData *dataToSave = [NSKeyedArchiver archivedDataWithRootObject:game];
+        [[NSUserDefaults standardUserDefaults] setObject:dataToSave forKey:GAME_STATE];
+        [[NSUserDefaults standardUserDefaults] synchronize];
+    }
+    [self.eraLabel setText:[NSString stringWithFormat:@"%d mya", game.era]];
 }
 
 - (void)didReceiveMemoryWarning {
@@ -85,14 +114,14 @@
     Organism *thisCreature = [organisms objectAtIndex:indexPath.row];
     // new organism can only spawn in an empty cell
     if ([thisCreature getSpecies] == Empty) {
-        switch (turn) {
+        switch (game.turn) {
             case P1:
                 [thisCreature setSpecies:Snapper];
-                turn = P2;
+                game.turn = P2;
                 break;
             case P2:
                 [thisCreature setSpecies:Sea];
-                turn = P1;
+                game.turn = P1;
                 break;
         }
         [cell setCellImageByState:[thisCreature getSpecies]];
@@ -115,6 +144,8 @@
  
  If 5 or more competitors around the organism, the organism is converted to the other species.
  Competitors: species different from the organism directly surrounding it.
+ 
+ This will take effect each turn, so it's possible to cause chain reactions turn after turn.
  */
 - (void)interCompetition {
     NSMutableArray *toDie = [[NSMutableArray alloc] init];
@@ -123,6 +154,7 @@
         int species = [thisCreature getSpecies];
         int competitors = 0;
         if (species == Empty) continue;
+        //TODO: if species is some predator or parasite don't do conversions
         if (i%8 != 0) { // get the left organism, can't get left if on the left edge
             Organism *left = [organisms objectAtIndex:i-1];
             if ([left getSpecies] != Empty && [left getSpecies] != species) {
@@ -169,8 +201,8 @@
                 competitors++;
             }
         }
-        if (competitors >= 5) [toDie addObject:[NSNumber numberWithInt:i]];
-        if (competitors > 0) NSLog(@"Competitors for %d: %d", i, competitors);
+        if (competitors > 4) [toDie addObject:[NSNumber numberWithInt:i]];
+        if (competitors > 4) NSLog(@"Death to %d with competitors %d", i, competitors);
     }
     
     // convert the organisms that were outcompeted
@@ -183,6 +215,14 @@
             [deadOrg setSpecies:Snapper];
         }
     }
+    game.era = [game elapseTime];
+    [self.eraLabel setText:[NSString stringWithFormat:@"%d mya", game.era]];
+    
+    // update the game object
+    NSData *savedData = [NSKeyedArchiver archivedDataWithRootObject:game];
+    [[NSUserDefaults standardUserDefaults]setObject:savedData forKey:GAME_STATE];
+    [[NSUserDefaults standardUserDefaults]synchronize];
+    
     [self.board reloadData];
 }
 

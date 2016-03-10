@@ -18,35 +18,11 @@
     Game *thisGame;
 }
 
-static NSString *const GAME_STATE = @"GameState";
-// TODO: do this after the basic game logic done
-static NSString *const BOARD_STATE = @"BoardState";
-
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
     BoardViewController *boardVC = [[BoardViewController alloc] init];
     
     [self.window setRootViewController:boardVC];
     [self.window makeKeyAndVisible];
-    
-    // want to save the Game state in-between runs
-    if (![[NSUserDefaults standardUserDefaults]dataForKey:GAME_STATE]) {
-        thisGame = [[Game alloc] init];
-        NSLog(@"NEW GAME");
-        NSData *data = [NSKeyedArchiver archivedDataWithRootObject:thisGame];
-        [[NSUserDefaults standardUserDefaults] setObject:data forKey:GAME_STATE];
-    } else {
-        NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
-        NSData *data = [defaults objectForKey:GAME_STATE];
-        thisGame = [NSKeyedUnarchiver unarchiveObjectWithData:data];
-        NSLog(@"%d %d", [thisGame getTurn], [thisGame getEra]);
-        [thisGame elapseTime];
-        NSLog(@"%d %d", [thisGame getTurn], [thisGame getEra]);
-        
-        // Synch test succeeded - should do this after each turn, but you also have to save the board!
-        NSData *dataToSave = [NSKeyedArchiver archivedDataWithRootObject:thisGame];
-        [[NSUserDefaults standardUserDefaults] setObject:dataToSave forKey:GAME_STATE];
-        [[NSUserDefaults standardUserDefaults] synchronize];
-    }
     
     return YES;
 }

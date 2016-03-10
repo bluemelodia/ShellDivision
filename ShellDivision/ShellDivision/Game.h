@@ -13,13 +13,16 @@ enum Turn {
     P2 = 1
 };
 
-static int era = 160;
-static int turn = 0;
+//static int era = 160;
+//static int turn = 0;
 
 @interface Game : NSObject
 
+@property (nonatomic, assign) int era;
+@property (nonatomic, assign) int turn;
+
 - (int) getTurn;
 - (int) getEra;
-- (void) elapseTime;
+- (int) elapseTime;
 
 @end
