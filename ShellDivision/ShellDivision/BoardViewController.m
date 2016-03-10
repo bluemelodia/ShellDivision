@@ -49,17 +49,6 @@ static NSString *const BOARD_STATE = @"BoardState";
     self.restartButton.layer.masksToBounds = YES;
     self.restartButton.layer.cornerRadius = 8;
     
-    // initialize the tile states to empty
-    for (int i = 0; i < 64; i++) {
-        Organism *newCreature = [[Organism alloc] init];
-        [newCreature spawn:Empty];
-        [organisms addObject:newCreature];
-    }
-    for (int i = 0; i < 64; i++) {
-        Organism *thisCreature = [organisms objectAtIndex:i];
-        //NSLog(@"%d", [thisCreature getSpecies]);
-    }
-    
     // want to save the Game state in-between runs
     if (![[NSUserDefaults standardUserDefaults]dataForKey:GAME_STATE]) {
         game = [[Game alloc] init];
@@ -68,6 +57,15 @@ static NSString *const BOARD_STATE = @"BoardState";
         NSLog(@"NEW GAME");
         NSData *data = [NSKeyedArchiver archivedDataWithRootObject:game];
         [[NSUserDefaults standardUserDefaults] setObject:data forKey:GAME_STATE];
+        
+        // initialize the tile states to empty
+        for (int i = 0; i < 64; i++) {
+            Organism *newCreature = [[Organism alloc] init];
+            [newCreature spawn:Empty];
+            [organisms addObject:newCreature];
+        }
+        NSData *orgData = [NSKeyedArchiver archivedDataWithRootObject:organisms];
+        [[NSUserDefaults standardUserDefaults] setObject:orgData forKey:BOARD_STATE];
     } else {
         NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
         NSData *data = [defaults objectForKey:GAME_STATE];
@@ -79,9 +77,12 @@ static NSString *const BOARD_STATE = @"BoardState";
         //NSLog(@"%d %d", [thisGame getTurn], [thisGame getEra]);
         
         // Synch test succeeded - should do this after each turn, but you also have to save the board!
-        NSData *dataToSave = [NSKeyedArchiver archivedDataWithRootObject:game];
-        [[NSUserDefaults standardUserDefaults] setObject:dataToSave forKey:GAME_STATE];
-        [[NSUserDefaults standardUserDefaults] synchronize];
+        //NSData *dataToSave = [NSKeyedArchiver archivedDataWithRootObject:game];
+        //[[NSUserDefaults standardUserDefaults] setObject:dataToSave forKey:GAME_STATE];
+        //[[NSUserDefaults standardUserDefaults] synchronize];
+        
+        NSData *orgData = [defaults objectForKey:BOARD_STATE];
+        organisms = [NSKeyedUnarchiver unarchiveObjectWithData:orgData];
     }
     [self.eraLabel setText:[NSString stringWithFormat:@"%d mya", game.era]];
 }
@@ -220,6 +221,8 @@ static NSString *const BOARD_STATE = @"BoardState";
     // update the game object
     NSData *savedData = [NSKeyedArchiver archivedDataWithRootObject:game];
     [[NSUserDefaults standardUserDefaults]setObject:savedData forKey:GAME_STATE];
+    NSData *savedOrgData = [NSKeyedArchiver archivedDataWithRootObject:organisms];
+    [[NSUserDefaults standardUserDefaults] setObject:savedOrgData forKey:BOARD_STATE];
     [[NSUserDefaults standardUserDefaults]synchronize];
     
     [self.board reloadData];

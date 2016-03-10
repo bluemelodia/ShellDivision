@@ -34,4 +34,18 @@
     sp = species;
 }
 
+- (id)initWithCoder:(NSCoder *)decoder {
+    NSMutableArray *orgInfo = [decoder decodeObjectForKey:@"ORG_INFO"];
+    sp = (int)[[orgInfo objectAtIndex:0] integerValue];
+    return self;
+}
+
+// allows saving into NSUserDefaults
+- (void)encodeWithCoder:(NSCoder *)aCoder {
+    NSMutableArray *orgInfo = [[NSMutableArray alloc] initWithCapacity:1];
+    NSNumber* wrappedSpecies = [NSNumber numberWithInt:sp];
+    [orgInfo insertObject:wrappedSpecies atIndex:0];
+    [aCoder encodeObject:orgInfo forKey:@"ORG_INFO"];
+}
+
 @end
