@@ -152,16 +152,6 @@
                 <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Monitor" translatesAutoresizingMaskIntoConstraints="NO" id="gpR-QZ-Vnv">
                     <rect key="frame" x="0.0" y="0.0" width="600" height="129"/>
                 </imageView>
-                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="F9D-20-zMq">
-                    <rect key="frame" x="240" y="44" width="120" height="22"/>
-                    <constraints>
-                        <constraint firstAttribute="width" constant="120" id="248-7H-YWd"/>
-                        <constraint firstAttribute="height" constant="22" id="Gfa-dn-W1m"/>
-                    </constraints>
-                    <fontDescription key="fontDescription" type="system" pointSize="15"/>
-                    <color key="textColor" red="0.58823529409999997" green="0.92941176469999998" blue="0.96470588239999999" alpha="1" colorSpace="calibratedRGB"/>
-                    <nil key="highlightedColor"/>
-                </label>
                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="OJ1-7c-Tvr">
                     <rect key="frame" x="0.0" y="125" width="600" height="4"/>
                     <color key="backgroundColor" red="0.60000002379999995" green="0.60000002379999995" blue="0.60000002379999995" alpha="1" colorSpace="calibratedRGB"/>
@@ -197,6 +187,16 @@
                         <constraint firstAttribute="width" constant="400" id="xnW-ly-tsD"/>
                     </constraints>
                     <fontDescription key="fontDescription" type="system" pointSize="13"/>
+                    <color key="textColor" red="0.58823529409999997" green="0.92941176469999998" blue="0.96470588239999999" alpha="1" colorSpace="calibratedRGB"/>
+                    <nil key="highlightedColor"/>
+                </label>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="F9D-20-zMq">
+                    <rect key="frame" x="240" y="44" width="120" height="22"/>
+                    <constraints>
+                        <constraint firstAttribute="width" constant="120" id="248-7H-YWd"/>
+                        <constraint firstAttribute="height" constant="22" id="Gfa-dn-W1m"/>
+                    </constraints>
+                    <fontDescription key="fontDescription" type="system" pointSize="15"/>
                     <color key="textColor" red="0.58823529409999997" green="0.92941176469999998" blue="0.96470588239999999" alpha="1" colorSpace="calibratedRGB"/>
                     <nil key="highlightedColor"/>
                 </label>

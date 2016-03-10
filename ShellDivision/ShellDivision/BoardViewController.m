@@ -182,45 +182,53 @@ static NSString *const EVENT_DETAIL = @"EventDetail";
             Organism *left = [organisms objectAtIndex:i-1];
             if ([left getSpecies] != Empty && [left getSpecies] != species) {
                 competitors++;
+                NSLog(@"LEFT of %d", i);
             }
         } if (i%8 != 7) { // get the right organism, can't get right if on the right corner
             Organism *right = [organisms objectAtIndex:i+1];
             if ([right getSpecies] != Empty && [right getSpecies] != species) {
                 competitors++;
+                NSLog(@"RIGHT of %d", i);
             }
-        } if (i-8 > 0) { // get the organism above it, can't go further up if in first row
+        } if (i-8 >= 0) { // get the organism above it, can't go further up if in first row
             Organism *up = [organisms objectAtIndex:i-8];
             if ([up getSpecies] != Empty && [up getSpecies] != species) {
                 competitors++;
+                NSLog(@"UP of %d", i);
             }
-        } if (i+8 < 56) { // get the organism below it, can't go further down if in the last row
+        } if (i+8 < 64 && i < 56) { // get the organism below it, can't go further down if in the last row
             Organism *down = [organisms objectAtIndex:i+8];
             if ([down getSpecies] != Empty && [down getSpecies] != species) {
                 competitors++;
+                NSLog(@"DOWN of %d", i);
             }
         }
-        if (i%8 != 0 && (i-9) > 0) { // get diagonal left up organism
+        if (i%8 != 0 && (i-9) >= 0) { // get diagonal left up organism
             Organism *lu = [organisms objectAtIndex:i-9];
             if ([lu getSpecies] != Empty && [lu getSpecies] != species) {
                 competitors++;
+                NSLog(@"DIA LEFT UP of %d", i);
             }
         }
-        if (i%8 != 7 && (i-7) > 0) { // get diagonal right up organism
+        if (i%8 != 7 && (i-7) >= 0) { // get diagonal right up organism
             Organism *ru = [organisms objectAtIndex:i-7];
             if ([ru getSpecies] != Empty && [ru getSpecies] != species) {
                 competitors++;
+                NSLog(@"DIA RIGHT UP of %d", i);
             }
         }
         if (i%8 != 0 && (i+7) < 64) { // get diagonal left down organism
             Organism *ld = [organisms objectAtIndex:i+7];
             if ([ld getSpecies] != Empty && [ld getSpecies] != species) {
                 competitors++;
+                NSLog(@"DIA LEFT DOWN of %d", i);
             }
         }
         if (i%8 != 7 && (i+9) < 64) { // get diagonal right down organism
             Organism *rd = [organisms objectAtIndex:i+9];
             if ([rd getSpecies] != Empty && [rd getSpecies] != species) {
                 competitors++;
+                NSLog(@"DIA RIGHT DOWN of %d", i);
             }
         }
         if (competitors > 4) [toDie addObject:[NSNumber numberWithInt:i]];
