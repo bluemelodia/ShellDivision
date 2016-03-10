@@ -87,6 +87,7 @@ static NSString *const BOARD_STATE = @"BoardState";
         organisms = [NSKeyedUnarchiver unarchiveObjectWithData:orgData];
         [self countSpecies];
     }
+    [self displayNextTurn];
     [self.eraLabel setText:[NSString stringWithFormat:@"%d mya", game.era]];
 }
 
@@ -221,6 +222,7 @@ static NSString *const BOARD_STATE = @"BoardState";
     game.era = [game elapseTime];
     [self.eraLabel setText:[NSString stringWithFormat:@"%d mya", game.era]];
     [self countSpecies];
+    [self displayNextTurn];
     // update the game object
     NSData *savedData = [NSKeyedArchiver archivedDataWithRootObject:game];
     [[NSUserDefaults standardUserDefaults]setObject:savedData forKey:GAME_STATE];
@@ -241,6 +243,16 @@ static NSString *const BOARD_STATE = @"BoardState";
     }
     [self.snapperPopulation setText:[NSString stringWithFormat:@"Snapper: %d", snapCount]];
     [self.seaPopulation setText:[NSString stringWithFormat:@"Sea: %d", seaCount]];
+}
+
+- (void) displayNextTurn {
+    UIImage *image;
+    if (game.turn == P1) {
+        image = [UIImage imageNamed:@"Snapper.imageset"];
+    } else {
+        image = [UIImage imageNamed:@"Sea.imageset"];
+    }
+    [self.nextTurn setImage:image];
 }
 
 /*

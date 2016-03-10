@@ -16,5 +16,6 @@
 @property (weak, nonatomic) IBOutlet UILabel *seaPopulation;
 @property (weak, nonatomic) IBOutlet UIButton *restartButton;
 @property (weak, nonatomic) IBOutlet UILabel *turnLabel;
+@property (weak, nonatomic) IBOutlet UIImageView *nextTurn;
 
 @end
