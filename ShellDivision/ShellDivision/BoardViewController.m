@@ -55,7 +55,7 @@ static NSString *const BOARD_STATE = @"BoardState";
     if (![[NSUserDefaults standardUserDefaults]dataForKey:GAME_STATE]) {
         game = [[Game alloc] init];
         game.turn = P1;
-        game.era = 160;
+        game.era = 300;
         NSLog(@"NEW GAME");
         NSData *data = [NSKeyedArchiver archivedDataWithRootObject:game];
         [[NSUserDefaults standardUserDefaults] setObject:data forKey:GAME_STATE];
@@ -131,7 +131,6 @@ static NSString *const BOARD_STATE = @"BoardState";
         }
         [cell setCellImageByState:[thisCreature getSpecies]];
     }
-    
     // kill organisms
     [self interCompetition];
 }
@@ -219,18 +218,25 @@ static NSString *const BOARD_STATE = @"BoardState";
             [deadOrg setSpecies:Snapper];
         }
     }
-    game.era = [game elapseTime];
-    [self.eraLabel setText:[NSString stringWithFormat:@"%d mya", game.era]];
-    [self countSpecies];
-    [self displayNextTurn];
-    // update the game object
-    NSData *savedData = [NSKeyedArchiver archivedDataWithRootObject:game];
-    [[NSUserDefaults standardUserDefaults]setObject:savedData forKey:GAME_STATE];
-    NSData *savedOrgData = [NSKeyedArchiver archivedDataWithRootObject:organisms];
-    [[NSUserDefaults standardUserDefaults] setObject:savedOrgData forKey:BOARD_STATE];
-    [[NSUserDefaults standardUserDefaults]synchronize];
-    
-    [self.board reloadData];
+    if ([self checkWin]) {
+        NSLog(@"You won!");
+    } else {
+        game.era = [game elapseTime];
+        [self.eraLabel setText:[NSString stringWithFormat:@"%d mya", game.era]];
+        [self countSpecies];
+        [self displayNextTurn];
+        // update the game object
+        NSData *savedData = [NSKeyedArchiver archivedDataWithRootObject:game];
+        [[NSUserDefaults standardUserDefaults]setObject:savedData forKey:GAME_STATE];
+        NSData *savedOrgData = [NSKeyedArchiver archivedDataWithRootObject:organisms];
+        [[NSUserDefaults standardUserDefaults] setObject:savedOrgData forKey:BOARD_STATE];
+        [[NSUserDefaults standardUserDefaults]synchronize];
+        [self.board reloadData];
+    }
+}
+
+- (BOOL) checkWin {
+    return false;
 }
 
 // take population counts
@@ -268,7 +274,7 @@ static NSString *const BOARD_STATE = @"BoardState";
 
 - (IBAction)restartGame:(id)sender {
     game.turn = P1;
-    game.era = 160;
+    game.era = 300;
     // initialize the tile states to empty
     for (int i = 0; i < 64; i++) {
         Organism *thisCreature = [organisms objectAtIndex:i];
