@@ -39,6 +39,7 @@ public class MainActivity extends AppCompatActivity {
         game.setEra(300);
 
         eraLabel = (TextView) findViewById(R.id.eraLabel);
+        eraLabel.setText(String.valueOf("Era: 300mya"));
         snapperPopulation = (TextView) findViewById(R.id.snapperPopulation);
         seaPopulation = (TextView) findViewById(R.id.seaPopulation);
         event = (TextView) findViewById(R.id.event);
@@ -81,6 +82,8 @@ public class MainActivity extends AppCompatActivity {
                     adapter.countPopulation();
                     snapperPopulation.setText(String.valueOf("Snappers: " + adapter.getSnapperPopulation()));
                     seaPopulation.setText(String.valueOf("Sea: " + adapter.getSeaPopulation()));
+                    game.elapseTime();
+                    eraLabel.setText(String.valueOf("Era: " + game.getEra() + "mya"));
                 }
             }
         });
