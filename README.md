@@ -2,23 +2,31 @@
 ```
 Game Plan - Do NOT proceed to the next stage until the current stage is on both devices
 1) Implement basic game logic on both iOS and Android
-  - state with single biome
-  - if an organism is surrounded by 5 or more members of a different species, it dies
-  - board full, winner is the one with more organisms (can tie)
-  - all members of opponent dies, you win 
+  - if an organism is surrounded by 5 or more members of a different species, it "defects" to the other species
+  - the basic win conditions must be implemented
+        - board full, winner is the one with more organisms (can tie)
+        - you can also win by having the population advantage when modern era is reached
+  - restart feature must be implemented 
+  - game state saved across multiple runs
+  - era is just a counter from 160mya to 0 at this stage
+  - turn indicator must be implemented
+  
 2) Implement eras and the mass extinctions
-  - for now, they kill indiscriminately
+  - add the era boundaries and broadcast extinctions
+  - certain extinctions will trigger on era boundaries
+  - they kill indiscriminately
   - in the subsequent steps you must take care to not trigger certain ones too often
-3) Implement state of organism with matching visuals (egg, infant, juvenile, adult)
-4) Implement the famine and disease, which will affect 3)
-5) Implement all of the predator types and the four biomes
-  - first, get them to eat indiscriminately
-  - then get them to treat different age brackets differently 
-  - then get them to treat different biomes differently; alternatively, pick predators that can traverse all biomes
-6) Implement the invasive species
+3) Implement the famine and disease, which will affect 3)
+4) Implement all of the predator types, they differ in their traversal
+5) Implement the invasive species
   - they are mindless and will just spread adjacently, making them rather easy to destroy
-7) Implement the competitors, which behave just like the organisms and are affected by everything that affects them
+6) Implement the competitors, which behave just like the organisms and are affected by everything that affects them
   - the competitors are smarter than the invasive species, and will spread out more
+7) Different levels of difficulty -> increased incidences of certain obstacles
+
+Realistically probably will not get past #4.
+
+Discarded ideas:
 8) Add in the habitat-altering disasters
 9) Add in geographical barriers
 10) Add in the different organism types, and their perks
@@ -26,8 +34,9 @@ Game Plan - Do NOT proceed to the next stage until the current stage is on both 
   Normal mode: default 8x8 board
   Predation mode: 13x13 board, predators never disappear from the screen
   Extinction mode: 19x19 board, competitors and invasive species will remain on the board until wiped out, plus predators never disappear
-
-Realistically probably will not get past #5.
+3) Implement state of organism with matching visuals (egg, infant, juvenile, adult)
+ and the four biomes
+  - first, get them to eat indiscriminately
 
 2-player game where your goal is to survive to the modern era as the dominant species
 Gameplay takes place on a small grid, where you can lay down one organism per turn (5 turns = 1 era)
