@@ -2,7 +2,16 @@
 ```
 Progress: 
 iOS -> Stage 1 DONE!
-Android -> Interface configured
+Android -> 
+  - if an organism is surrounded by 5 or more members of a different species, it "defects" to the other species
+  - the basic win conditions must be implemented
+        - board full, winner is the one with more organisms (can tie)
+        - you can also win by having the population advantage when modern era is reached
+  - restart feature must be implemented 
+  - game state saved across multiple runs (board state, turn state, any event messages, era state)
+  
+  - era is just a counter from 160mya to 0 at this stage - DONE
+  - turn indicator must be implemented - DONE
 
 
 Game Plan - Do NOT proceed to the next stage until the current stage is on both devices
