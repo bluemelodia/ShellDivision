@@ -14,10 +14,14 @@
 
 static NSString *const GAME_STATE = @"GameState";
 static NSString *const BOARD_STATE = @"BoardState";
+static NSString *const EVENT_MESSAGE = @"EventMessage";
+static NSString *const EVENT_DETAIL = @"EventDetail";
 
 @interface BoardViewController () {
     NSMutableArray *organisms;
     Game *game;
+    NSString *eventMessage;
+    NSString *eventDetails;
 }
 
 @end
@@ -55,7 +59,7 @@ static NSString *const BOARD_STATE = @"BoardState";
     if (![[NSUserDefaults standardUserDefaults]dataForKey:GAME_STATE]) {
         game = [[Game alloc] init];
         game.turn = P1;
-        game.era = 10;
+        game.era = 300;
         NSLog(@"NEW GAME");
         NSData *data = [NSKeyedArchiver archivedDataWithRootObject:game];
         [[NSUserDefaults standardUserDefaults] setObject:data forKey:GAME_STATE];
@@ -87,6 +91,21 @@ static NSString *const BOARD_STATE = @"BoardState";
         organisms = [NSKeyedUnarchiver unarchiveObjectWithData:orgData];
         [self countSpecies];
     }
+    
+    // get the event strings
+    if (![[NSUserDefaults standardUserDefaults]stringForKey:EVENT_MESSAGE]) {
+        [[NSUserDefaults standardUserDefaults] setObject:@"" forKey:EVENT_MESSAGE];
+    } else {
+        eventMessage = [[NSUserDefaults standardUserDefaults]objectForKey:EVENT_MESSAGE];
+    }
+    if (![[NSUserDefaults standardUserDefaults]stringForKey:EVENT_DETAIL]) {
+        [[NSUserDefaults standardUserDefaults] setObject:@"" forKey:EVENT_DETAIL];
+    } else {
+        eventDetails = [[NSUserDefaults standardUserDefaults]objectForKey:EVENT_DETAIL];
+    }
+    [self.event setText:eventMessage];
+    [self.details setText:eventDetails];
+    
     [self displayNextTurn];
     [self.eraLabel setText:[NSString stringWithFormat:@"%d mya", game.era]];
 }
@@ -244,6 +263,9 @@ static NSString *const BOARD_STATE = @"BoardState";
         }
         [self.event setText:victor];
         [self.details setText:message];
+        [[NSUserDefaults standardUserDefaults] setObject:victor forKey:EVENT_MESSAGE];
+        [[NSUserDefaults standardUserDefaults] setObject:message forKey:EVENT_DETAIL];
+        [[NSUserDefaults standardUserDefaults]synchronize];
         self.board.userInteractionEnabled = NO;
     } else {
         [self countSpecies];
@@ -320,7 +342,7 @@ static NSString *const BOARD_STATE = @"BoardState";
     [self.event setText:@""];
     [self.details setText:@""];
     game.turn = P1;
-    game.era = 10;
+    game.era = 300;
     // initialize the tile states to empty
     for (int i = 0; i < 64; i++) {
         Organism *thisCreature = [organisms objectAtIndex:i];
@@ -336,6 +358,8 @@ static NSString *const BOARD_STATE = @"BoardState";
     [[NSUserDefaults standardUserDefaults]setObject:savedData forKey:GAME_STATE];
     NSData *savedOrgData = [NSKeyedArchiver archivedDataWithRootObject:organisms];
     [[NSUserDefaults standardUserDefaults] setObject:savedOrgData forKey:BOARD_STATE];
+    [[NSUserDefaults standardUserDefaults] setObject:@"" forKey:EVENT_MESSAGE];
+    [[NSUserDefaults standardUserDefaults] setObject:@"" forKey:EVENT_DETAIL];
     [[NSUserDefaults standardUserDefaults]synchronize];
     
     [self.board reloadData];
