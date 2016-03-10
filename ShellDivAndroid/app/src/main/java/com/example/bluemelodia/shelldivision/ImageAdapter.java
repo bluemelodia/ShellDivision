@@ -85,6 +85,55 @@ public class ImageAdapter extends BaseAdapter {
         return imageView;
     }
 
+    // eradication methods
+    public void interCompetition() {
+        ArrayList<Integer> toDie = new ArrayList<>();
+        for (int i = 0; i < 64; i++) {
+            Organism organism = getTileState(i);
+            int competitors = 0;
+            if (organism.getSpecies().equals(Organism.Species.Empty)) continue;
+            if (i%8 != 0) { // left organism
+                Organism left = getTileState(i-1);
+                if (!left.getSpecies().equals(Organism.Species.Empty) && !left.getSpecies().equals(organism.getSpecies())) {
+                    competitors++;
+                }
+            }
+            if (i%8 != 7) { // right organism
+                Organism right = getTileState(i+1);
+                if (!right.getSpecies().equals(Organism.Species.Empty) && !right.getSpecies().equals(organism.getSpecies())) {
+                    competitors++;
+                }
+            }
+            if (i-8 > 0) { // above organism
+                Organism up = getTileState(i-8);
+                if (!up.getSpecies().equals(Organism.Species.Empty) && !up.getSpecies().equals(organism.getSpecies())) {
+                    competitors++;
+                }
+            }
+            if (i+8 < 56) { // below organism
+                Organism down = getTileState(i+8);
+                if (!down.getSpecies().equals(Organism.Species.Empty) && !down.getSpecies().equals(organism.getSpecies())) {
+                    competitors++;
+                }
+            }
+            Log.i("Competitors:", String.valueOf(competitors));
+            if (competitors > 3) toDie.add(Integer.valueOf(i));
+        }
+
+        // convert the organisms that were outcompeted
+        for (int i = 0; i < toDie.size(); i++) {
+            Organism deadOrg = getTileState(toDie.get(i));
+            Log.i("Dead org:", String.valueOf(toDie.get(i)));
+            if (deadOrg.getSpecies().equals(Organism.Species.Snapper)) {
+                deadOrg.setSpecies(Organism.Species.Sea);
+            } else if (deadOrg.getSpecies().equals(Organism.Species.Sea)) {
+                deadOrg.setSpecies(Organism.Species.Snapper);
+            }
+            setTileState(toDie.get(i), deadOrg);
+        }
+    }
+
+    // count population methods
     public int getSnapperPopulation() {
         return snapperPopulation;
     }

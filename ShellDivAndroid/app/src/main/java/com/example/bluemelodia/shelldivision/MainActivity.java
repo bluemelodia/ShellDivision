@@ -79,6 +79,8 @@ public class MainActivity extends AppCompatActivity {
                         game.setTurn(Game.Turn.P1);
                         nextTurn.setImageResource(R.drawable.snapper);
                     }
+                    adapter.interCompetition(); // convert the surrounded organisms
+
                     adapter.countPopulation();
                     snapperPopulation.setText(String.valueOf("Snappers: " + adapter.getSnapperPopulation()));
                     seaPopulation.setText(String.valueOf("Sea: " + adapter.getSeaPopulation()));
