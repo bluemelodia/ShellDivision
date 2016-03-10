@@ -7,24 +7,35 @@ Game Plan - Do NOT proceed to the next stage until the current stage is on both 
         - board full, winner is the one with more organisms (can tie)
         - you can also win by having the population advantage when modern era is reached
   - restart feature must be implemented 
-  - game state saved across multiple runs
+  - game state saved across multiple runs (board state, turn state, any event messages, era state)
   - era is just a counter from 160mya to 0 at this stage
   - turn indicator must be implemented
   
 2) Implement eras and the mass extinctions
   - add the era boundaries and broadcast extinctions
+  - game state now includes extinction messages as well
   - certain extinctions will trigger on era boundaries
+      - one of the extinctions randomly chosen every 30 turns
   - they kill indiscriminately
   - in the subsequent steps you must take care to not trigger certain ones too often
-3) Implement the famine and disease, which will affect 3)
-4) Implement all of the predator types, they differ in their traversal
-5) Implement the invasive species
-  - they are mindless and will just spread adjacently, making them rather easy to destroy
-6) Implement the competitors, which behave just like the organisms and are affected by everything that affects them
-  - the competitors are smarter than the invasive species, and will spread out more
-7) Different levels of difficulty -> increased incidences of certain obstacles
+  
+  - mass extinctions that can trigger at this stage:
+      - meteor: 60-90% of species wiped out, randomly pick that number of organisms to remove
+      - volcanic eruption: between 10-20 piles of ash hits random spots on the board, rendering them impassable and killing any 
+          organisms residing on it
+          - the ash will stay until the next extinction event or game over
+      - alien invasion: complete board flip!!! all Sea -> Snapper, all Snapper -> Sea!
+      - disease: now, you can convert a species just by surrounding it by 4 instead of 5 organisms
+      - overcompetition: now, you need to surround an organism with 6 of your own to convert it
 
-Realistically probably will not get past #4.
+3) Implement all of the predator types, they differ in their traversal
+4) Implement the invasive species
+  - they are mindless and will just spread adjacently, making them rather easy to destroy
+5) Implement the competitors, which behave just like the organisms and are affected by everything that affects them
+  - the competitors are smarter than the invasive species, and will spread out more
+6) Different levels of difficulty -> increased incidences of certain obstacles
+
+Realistically probably will not get past #2 or 3.
 
 Discarded ideas:
 8) Add in the habitat-altering disasters
