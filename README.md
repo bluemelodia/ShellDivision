@@ -2,7 +2,7 @@
 ```
 Progress: 
 iOS -> Stage 1 DONE!
-Android -> not started
+Android -> Interface configured
 
 
 Game Plan - Do NOT proceed to the next stage until the current stage is on both devices
