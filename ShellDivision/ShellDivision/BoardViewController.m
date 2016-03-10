@@ -83,6 +83,7 @@ static NSString *const BOARD_STATE = @"BoardState";
         
         NSData *orgData = [defaults objectForKey:BOARD_STATE];
         organisms = [NSKeyedUnarchiver unarchiveObjectWithData:orgData];
+        [self countSpecies];
     }
     [self.eraLabel setText:[NSString stringWithFormat:@"%d mya", game.era]];
 }
