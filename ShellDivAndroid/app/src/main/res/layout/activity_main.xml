@@ -49,4 +49,18 @@
         android:scaleType="fitXY"
         android:layout_below="@+id/topView"
         android:background="#cc7676" />
+
+    <GridView
+        android:layout_width="260dp"
+        android:layout_height="260dp"
+        android:numColumns="8"
+        android:verticalSpacing="1dp"
+        android:horizontalSpacing="1dp"
+        android:layout_centerVertical="true"
+        android:layout_centerHorizontal="true"
+        android:layout_alignParentEnd="false"
+        android:layout_alignParentStart="false"
+        android:layout_below="@+id/topView"
+        android:background="#f09efb"
+        android:id="@+id/gridView"></GridView>
 </RelativeLayout>
