@@ -233,6 +233,7 @@ static NSString *const BOARD_STATE = @"BoardState";
     [self.board reloadData];
 }
 
+// take population counts
 - (void) countSpecies {
     int snapCount = 0;
     int seaCount = 0;
@@ -245,6 +246,7 @@ static NSString *const BOARD_STATE = @"BoardState";
     [self.seaPopulation setText:[NSString stringWithFormat:@"Sea: %d", seaCount]];
 }
 
+// display the organism whose next turn it is
 - (void) displayNextTurn {
     UIImage *image;
     if (game.turn == P1) {
@@ -253,6 +255,15 @@ static NSString *const BOARD_STATE = @"BoardState";
         image = [UIImage imageNamed:@"Sea.imageset"];
     }
     [self.nextTurn setImage:image];
+}
+
+// check if the grid is full
+- (BOOL) isGridFull {
+    for (int i = 0; i < 64; i++) {
+        Organism *thisCreature = [organisms objectAtIndex:i];
+        if ([thisCreature getSpecies] == Empty) return false;
+    }
+    return true;
 }
 
 /*
