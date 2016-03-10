@@ -48,6 +48,8 @@ static NSString *const BOARD_STATE = @"BoardState";
     self.seaPopulation.layer.cornerRadius = 8;
     self.restartButton.layer.masksToBounds = YES;
     self.restartButton.layer.cornerRadius = 8;
+    self.turnLabel.layer.masksToBounds = YES;
+    self.turnLabel.layer.cornerRadius = 8;
     
     // want to save the Game state in-between runs
     if (![[NSUserDefaults standardUserDefaults]dataForKey:GAME_STATE]) {
