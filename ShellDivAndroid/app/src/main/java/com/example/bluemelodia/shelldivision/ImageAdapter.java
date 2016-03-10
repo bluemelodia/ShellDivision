@@ -21,6 +21,8 @@ public class ImageAdapter extends BaseAdapter {
     private static final int Empty = 0;
     private static final int Snapper = 1;
     private static final int Sea = 2;
+    public int snapperPopulation;
+    public int seaPopulation;
 
     public List<Organism> tileStates = new ArrayList<>();
 
@@ -81,5 +83,23 @@ public class ImageAdapter extends BaseAdapter {
             imageView.setImageResource(R.drawable.sea);
         }
         return imageView;
+    }
+
+    public int getSnapperPopulation() {
+        return snapperPopulation;
+    }
+
+    public int getSeaPopulation() {
+        return seaPopulation;
+    }
+
+    public void countPopulation() {
+        snapperPopulation = 0;
+        seaPopulation = 0;
+        for(int i = 0; i < 64; i++) {
+            Organism organism = getTileState(i);
+            if (organism.getSpecies().equals(Organism.Species.Snapper)) snapperPopulation++;
+            else if (organism.getSpecies().equals(Organism.Species.Sea)) seaPopulation++;
+        }
     }
 }
