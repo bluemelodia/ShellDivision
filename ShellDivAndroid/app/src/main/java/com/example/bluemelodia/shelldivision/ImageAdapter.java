@@ -7,7 +7,6 @@ import android.widget.GridView;
 import android.widget.ImageView;
 import android.view.View;
 import android.util.Log;
-
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -23,8 +22,17 @@ public class ImageAdapter extends BaseAdapter {
     private static final int Snapper = 1;
     private static final int Sea = 2;
 
+    private List<Organism> tileStates = new ArrayList<>();
+
     public ImageAdapter(Context c) {
         mContext = c;
+
+        // Each organism starts out empty.
+        for(int i = 0; i < 64; i++) {
+            Organism newOrganism = new Organism();
+            newOrganism.setSpecies(Organism.Species.Empty);
+            tileStates.add(newOrganism);
+        }
     }
 
     public int getCount() {
@@ -34,6 +42,16 @@ public class ImageAdapter extends BaseAdapter {
     // return the actual object at the specified position in the adapter
     public Object getItem(int position) {
         return null;
+    }
+
+    // get the current state of the tile
+    public Organism getTileState(int position) {
+        return tileStates.get(position);
+    }
+
+    // change the state of the tile
+    public void setTileState(int position, Organism newState) {
+        tileStates.set(position, newState);
     }
 
     // return the row id of the item
@@ -53,8 +71,15 @@ public class ImageAdapter extends BaseAdapter {
         } else {
             imageView = (ImageView) convertView;
         }
-        int color = 0xFF0000FF; // Transparent
-        //imageView.setBackgroundColor(color);
+        // use the current state of the tile to pick which image goes into it
+        Organism organism = tileStates.get(position);
+        if (organism.getSpecies() == Organism.Species.Empty) {
+            imageView.setImageResource(R.drawable.shell);
+        } else if (organism.getSpecies() == Organism.Species.Snapper) {
+            imageView.setImageResource(R.drawable.snapper);
+        } else if (organism.getSpecies() == Organism.Species.Sea) {
+            imageView.setImageResource(R.drawable.sea);
+        }
         return imageView;
     }
 }
