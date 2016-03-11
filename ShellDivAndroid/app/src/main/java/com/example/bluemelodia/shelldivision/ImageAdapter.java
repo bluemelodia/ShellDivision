@@ -117,15 +117,48 @@ public class ImageAdapter extends BaseAdapter {
                     Log.i("Up comp for", String.valueOf(i));
                 }
             }
-            if (i+8 < 64 && i < 56) { // below organism 
+            if (i+8 < 64 && i < 56) { // below organism
                 Organism down = getTileState(i+8);
                 if (!down.getSpecies().equals(Organism.Species.Empty) && !down.getSpecies().equals(organism.getSpecies())) {
                     competitors++;
                     Log.i("Down comp for", String.valueOf(i));
                 }
             }
+
+            if (i%8 != 0 && (i-9) >= 0) { // diagonal left up organism
+                Organism lu = getTileState(i-9);
+                if (!lu.getSpecies().equals(Organism.Species.Empty) && !lu.getSpecies().equals(organism.getSpecies())) {
+                    competitors++;
+                    Log.i("LU comp for", String.valueOf(i));
+                }
+            }
+
+            if (i%8 != 7 && (i-7) >= 0) { // diagonal right up organism
+                Organism ru = getTileState(i-7);
+                if (!ru.getSpecies().equals(Organism.Species.Empty) && !ru.getSpecies().equals(organism.getSpecies())) {
+                    competitors++;
+                    Log.i("RU comp for", String.valueOf(i));
+                }
+            }
+
+            if (i%8 != 0 && (i+7) < 64) { // diagonal left down organism
+                Organism ld = getTileState(i+7);
+                if (!ld.getSpecies().equals(Organism.Species.Empty) && !ld.getSpecies().equals(organism.getSpecies())) {
+                    competitors++;
+                    Log.i("LD comp for", String.valueOf(i));
+                }
+            }
+
+            if (i%8 != 7 && (i+9) < 64) { // diagonal right down organism
+                Organism rd = getTileState(i+9);
+                if (!rd.getSpecies().equals(Organism.Species.Empty) && !rd.getSpecies().equals(organism.getSpecies())) {
+                    competitors++;
+                    Log.i("RD comp for", String.valueOf(i));
+                }
+            }
+
             Log.i("Competitors:", String.valueOf(competitors));
-            if (competitors > 3) toDie.add(Integer.valueOf(i));
+            if (competitors > 4) toDie.add(Integer.valueOf(i));
         }
 
         return toDie;
