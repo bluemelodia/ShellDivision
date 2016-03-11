@@ -182,4 +182,20 @@ public class ImageAdapter extends BaseAdapter {
             else if (organism.getSpecies().equals(Organism.Species.Sea)) seaPopulation++;
         }
     }
+
+    // check for fullness
+    public boolean isGridFull() {
+        for(int i = 0; i < 64; i++) {
+            Organism organism = getTileState(i);
+            if (organism.getSpecies().equals(Organism.Species.Empty)) return false;
+        }
+        return true;
+    }
+
+    public int determineVictor(int snapCount, int seaCount) {
+        if (snapCount > seaCount) return 1;
+        else if (seaCount > snapCount) return 2;
+        else if (seaCount == snapCount && seaCount == 0) return 3;
+        else return 4;
+    }
 }

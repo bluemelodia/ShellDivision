@@ -60,7 +60,7 @@ public class MainActivity extends AppCompatActivity {
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
                 Organism organism = adapter.getTileState(position);
                 if (organism.getSpecies().equals(Organism.Species.Empty)) {
-                    Toast.makeText(MainActivity.this, "Reset the board.", Toast.LENGTH_SHORT).show();
+                    //Toast.makeText(MainActivity.this, "Reset the board.", Toast.LENGTH_SHORT).show();
                     if (game.getTurn().equals(Game.Turn.P1)) {
                         organism.setSpecies(Organism.Species.Snapper);
                         adapter.setTileState(position, organism);
@@ -102,10 +102,34 @@ public class MainActivity extends AppCompatActivity {
                     }
 
                     adapter.countPopulation();
-                    snapperPopulation.setText(String.valueOf("Snappers: " + adapter.getSnapperPopulation()));
-                    seaPopulation.setText(String.valueOf("Sea: " + adapter.getSeaPopulation()));
+                    int snapperPops = adapter.getSnapperPopulation();
+                    snapperPopulation.setText(String.valueOf("Snappers: " + snapperPops));
+                    int seaPops = adapter.getSeaPopulation();
+                    seaPopulation.setText(String.valueOf("Sea: " + seaPops));
                     game.elapseTime();
                     eraLabel.setText(String.valueOf("Era: " + game.getEra() + "mya"));
+
+                    if (adapter.isGridFull() || game.getEra() <= 0) {
+                        int victory = adapter.determineVictor(snapperPops, seaPops);
+                        switch(victory) {
+                            case 1:
+                                event.setText("Snappers Win");
+                                details.setText("Snapping turtles have become the dominant species!");
+                                break;
+                            case 2:
+                                event.setText("Sea Turtles Win");
+                                details.setText("Sea turtles rule!");
+                                break;
+                            case 3:
+                                event.setText("Total Extinction");
+                                details.setText("Unfortunately, neither of you made it to the modern era...");
+                                break;
+                            case 4:
+                                event.setText("No Clear Victor");
+                                details.setText("Looks like you'll have to share!");
+                                break;
+                        }
+                    }
                 }
             }
         });
