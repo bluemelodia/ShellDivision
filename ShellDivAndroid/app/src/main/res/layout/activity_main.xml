@@ -65,7 +65,7 @@
                 android:id="@+id/eraLabel"
                 android:textSize="16dp"
                 android:textAlignment="center"
-                android:background="#004300"
+                android:background="@layout/button_green_rounded_corners"
                 android:textColor="#FFCC66" />
 
             <TextView
@@ -81,9 +81,9 @@
                 android:textAppearance="?android:attr/textAppearanceMedium"
                 android:text="Snappers: 0"
                 android:id="@+id/snapperPopulation"
-                android:textSize="16dp"
+                android:textSize="15dp"
                 android:textAlignment="center"
-                android:background="#ffffff" />
+                android:background="@layout/button_white_rounded_corners" />
 
             <TextView
                 android:layout_width="wrap_content"
@@ -98,9 +98,9 @@
                 android:textAppearance="?android:attr/textAppearanceMedium"
                 android:text="Sea: 0"
                 android:id="@+id/seaPopulation"
-                android:textSize="16dp"
+                android:textSize="15dp"
                 android:textAlignment="center"
-                android:background="#ffffff" />
+                android:background="@layout/button_white_rounded_corners" />
 
             <TextView
                 android:layout_width="wrap_content"
@@ -116,7 +116,7 @@
                 android:text="Restart"
                 android:radius="8dp"
                 android:id="@+id/restartButton"
-                android:background="#ff0000"
+                android:background="@layout/button_red_rounded_corners"
                 android:textColor="#ffffff"
                 android:onClick="resetBoard" />
         </LinearLayout>
@@ -144,10 +144,10 @@
                 android:text="Whose Turn"
                 android:id="@+id/turnLabel"
                 android:textAlignment="center"
-                android:background="#FFCC66"
+                android:background="@layout/button_yellow_rounded_corners"
                 android:textColor="#804000"
                 android:layout_marginTop="5dp"
-                android:textSize="16dp" />
+                android:textSize="14dp" />
 
             <ImageView
                 android:layout_width="wrap_content"
