@@ -42,7 +42,7 @@ public class MainActivity extends AppCompatActivity {
         game.setEra(300);
 
         eraLabel = (TextView) findViewById(R.id.eraLabel);
-        eraLabel.setText(String.valueOf("Era: 300mya"));
+        eraLabel.setText(String.valueOf("300mya"));
         snapperPopulation = (TextView) findViewById(R.id.snapperPopulation);
         seaPopulation = (TextView) findViewById(R.id.seaPopulation);
         event = (TextView) findViewById(R.id.event);
@@ -78,7 +78,6 @@ public class MainActivity extends AppCompatActivity {
                         ImageView viewToChange = (ImageView) view;
                         viewToChange.setAlpha(1.0f);
                         viewToChange.setImageResource(R.drawable.sea);
-
                         game.setTurn(Game.Turn.P1);
                         nextTurn.setImageResource(R.drawable.snapper);
                     }
@@ -93,6 +92,7 @@ public class MainActivity extends AppCompatActivity {
                                 org.setSpecies(Organism.Species.Sea);
                                 adapter.setTileState(Integer.valueOf(i), org);
                                 gridChild.setImageResource(R.drawable.sea);
+
                             } else if (org.getSpecies().equals(Organism.Species.Sea)) {
                                 org.setSpecies(Organism.Species.Snapper);
                                 adapter.setTileState(Integer.valueOf(i), org);
@@ -107,7 +107,7 @@ public class MainActivity extends AppCompatActivity {
                     int seaPops = adapter.getSeaPopulation();
                     seaPopulation.setText(String.valueOf("Sea: " + seaPops));
                     game.elapseTime();
-                    eraLabel.setText(String.valueOf("Era: " + game.getEra() + "mya"));
+                    eraLabel.setText(String.valueOf(game.getEra() + "mya"));
 
                     if (adapter.isGridFull() || game.getEra() <= 0) {
                         int victory = adapter.determineVictor(snapperPops, seaPops);
@@ -149,7 +149,7 @@ public class MainActivity extends AppCompatActivity {
         }
         game.setTurn(Game.Turn.P1);
         game.setEra(300);
-        eraLabel.setText("Era: 300mya");
+        eraLabel.setText("300mya");
         nextTurn.setImageResource(R.drawable.snapper);
         adapter.resetPops();
         seaPopulation.setText("Sea: 0");

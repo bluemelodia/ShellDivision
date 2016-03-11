@@ -61,7 +61,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="20dp"
                 android:textAppearance="?android:attr/textAppearanceMedium"
-                android:text="Era: 100mya"
+                android:text="100mya"
                 android:id="@+id/eraLabel"
                 android:textSize="16dp"
                 android:textAlignment="center"
