@@ -34,6 +34,8 @@ Game Plan - Do NOT proceed to the next stage until the current stage is on both 
       - disease: now, you can convert a species just by surrounding it by 4 instead of 5 organisms
       - overcompetition: now, you need to surround an organism with 6 of your own to convert it
 
+Can add animations in the future if time permitted.
+
 3) Implement all of the predator types, they differ in their traversal
 4) Implement the invasive species
   - they are mindless and will just spread adjacently, making them rather easy to destroy
