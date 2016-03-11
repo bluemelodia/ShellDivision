@@ -135,6 +135,30 @@ public class MainActivity extends AppCompatActivity {
         });
     }
 
+    // change all the tiles back to the pokeball
+    public void resetBoard(View view) {
+        GridView gridView =  (GridView) findViewById(R.id.gridView);
+        final int size = gridView.getChildCount();
+        for(int i = 0; i < size; i++) {
+            Organism org = adapter.getTileState(Integer.valueOf(i));
+            org.setSpecies(Organism.Species.Empty);
+            ImageView gridChild = (ImageView) gridView.getChildAt(i);
+            gridChild.setImageResource(R.drawable.shell);
+            gridChild.setAlpha(0.2f);
+            adapter.setTileState(i, org);
+        }
+        game.setTurn(Game.Turn.P1);
+        game.setEra(300);
+        eraLabel.setText("Era: 300mya");
+        nextTurn.setImageResource(R.drawable.snapper);
+        adapter.resetPops();
+        seaPopulation.setText("Sea: 0");
+        snapperPopulation.setText("Snappers: 0");
+        event.setText("");
+        details.setText("");
+        Toast.makeText(MainActivity.this, "Reset the board.", Toast.LENGTH_SHORT).show();
+    }
+
     @Override
     public void onStart() {
         super.onStart();

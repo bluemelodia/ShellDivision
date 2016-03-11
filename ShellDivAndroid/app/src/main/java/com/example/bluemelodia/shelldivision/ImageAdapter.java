@@ -173,6 +173,11 @@ public class ImageAdapter extends BaseAdapter {
         return seaPopulation;
     }
 
+    public void resetPops() {
+        snapperPopulation = 0;
+        seaPopulation = 0;
+    }
+
     public void countPopulation() {
         snapperPopulation = 0;
         seaPopulation = 0;

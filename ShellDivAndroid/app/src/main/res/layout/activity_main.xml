@@ -117,7 +117,8 @@
                 android:radius="8dp"
                 android:id="@+id/restartButton"
                 android:background="#ff0000"
-                android:textColor="#ffffff" />
+                android:textColor="#ffffff"
+                android:onClick="resetBoard" />
         </LinearLayout>
 
         <LinearLayout
