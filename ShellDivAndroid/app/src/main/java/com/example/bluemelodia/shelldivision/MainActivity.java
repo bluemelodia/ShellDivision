@@ -1,5 +1,6 @@
 package com.example.bluemelodia.shelldivision;
 
+import android.content.SharedPreferences;
 import android.media.Image;
 import android.net.Uri;
 import android.os.Bundle;
@@ -23,6 +24,7 @@ import java.lang.reflect.Array;
 import java.util.ArrayList;
 
 public class MainActivity extends AppCompatActivity {
+    public static final String EVENT_MESSAGES = "EventMessages";
     private static ImageAdapter adapter;
     private Game game;
     TextView eraLabel;
@@ -45,8 +47,11 @@ public class MainActivity extends AppCompatActivity {
         eraLabel.setText(String.valueOf("300mya"));
         snapperPopulation = (TextView) findViewById(R.id.snapperPopulation);
         seaPopulation = (TextView) findViewById(R.id.seaPopulation);
+        SharedPreferences eventMessage = getSharedPreferences(EVENT_MESSAGES, 0);
         event = (TextView) findViewById(R.id.event);
+        event.setText(eventMessage.getString("eventText", ""));
         details = (TextView) findViewById(R.id.details);
+        details.setText(eventMessage.getString("detailsText", ""));
         nextTurn = (ImageView) findViewById(R.id.nextTurn);
         nextTurn.setImageResource(R.drawable.snapper);
 
@@ -129,6 +134,12 @@ public class MainActivity extends AppCompatActivity {
                                 details.setText("Looks like you'll have to share!");
                                 break;
                         }
+                        // commit these messages
+                        SharedPreferences eventMessages = getSharedPreferences(EVENT_MESSAGES, 0);
+                        SharedPreferences.Editor editor = eventMessages.edit();
+                        editor.putString("eventText", event.getText().toString());
+                        editor.putString("detailsText", details.getText().toString());
+                        editor.commit();
                     }
                 }
             }
@@ -156,6 +167,11 @@ public class MainActivity extends AppCompatActivity {
         snapperPopulation.setText("Snappers: 0");
         event.setText("");
         details.setText("");
+        SharedPreferences eventMessages = getSharedPreferences(EVENT_MESSAGES, 0);
+        SharedPreferences.Editor editor = eventMessages.edit();
+        editor.putString("eventText", event.getText().toString());
+        editor.putString("detailsText", details.getText().toString());
+        editor.commit();
         Toast.makeText(MainActivity.this, "Reset the board.", Toast.LENGTH_SHORT).show();
     }
 
