@@ -185,7 +185,7 @@
         android:layout_alignBottom="@id/bottomView"
         android:layout_marginBottom="120dp"
         android:layout_below="@+id/topView"
-        ></GridView>
+        android:layout_marginTop="25dp"></GridView>
 
     <TextView
         android:layout_width="wrap_content"

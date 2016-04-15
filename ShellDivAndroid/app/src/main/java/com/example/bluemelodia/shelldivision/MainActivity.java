@@ -158,13 +158,12 @@ public class MainActivity extends CustomActivity {
                         editor.putString("eventText", event.getText().toString());
                         editor.putString("detailsText", details.getText().toString());
                         editor.commit();
-                    } else { // save the board and game state
-                        SharedPreferences mprefs = getSharedPreferences("TILE_STATES", 0);
-                        adapter.saveTileStates(mprefs);
+                    } // save the board and game state
+                    SharedPreferences mprefs = getSharedPreferences("TILE_STATES", 0);
+                    adapter.saveTileStates(mprefs);
 
-                        SharedPreferences gamePrefs = getSharedPreferences("GAME_STATE", 0);
-                        game.saveGameState(gamePrefs);
-                    }
+                    SharedPreferences gamePrefs = getSharedPreferences("GAME_STATE", 0);
+                    game.saveGameState(gamePrefs);
                 }
             }
         });
