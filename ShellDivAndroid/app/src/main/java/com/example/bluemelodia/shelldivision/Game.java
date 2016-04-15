@@ -40,6 +40,7 @@ public class Game {
         return era;
     }
 
+    // methods for saving, loading the game state
     public void saveGameState(SharedPreferences mprefs) {
         SharedPreferences.Editor editor = mprefs.edit();
         Gson gson = new Gson();

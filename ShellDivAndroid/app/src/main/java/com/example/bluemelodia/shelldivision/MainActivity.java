@@ -43,14 +43,17 @@ public class MainActivity extends CustomActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
+        // load in the previous game state and messages, or set to default values if first time playing
         SharedPreferences gamePrefs = getSharedPreferences("GAME_STATE", 0);
         game = new Game();
         game.loadGameState(gamePrefs, game);
 
         eraLabel = (TextView) findViewById(R.id.eraLabel);
         eraLabel.setText(String.valueOf(game.getEra()) + "mya");
+
         snapperPopulation = (TextView) findViewById(R.id.snapperPopulation);
         seaPopulation = (TextView) findViewById(R.id.seaPopulation);
+
         SharedPreferences eventMessage = getSharedPreferences(EVENT_MESSAGES, 0);
         event = (TextView) findViewById(R.id.event);
         event.setText(eventMessage.getString("eventText", ""));
@@ -64,14 +67,18 @@ public class MainActivity extends CustomActivity {
             nextTurn.setImageResource(R.drawable.sea);
         }
         final GridView gridView = (GridView) findViewById(R.id.gridView);
+
         // set a custom adapter (ImageAdapter) as the source for all items to be displayed in the grid
         adapter = new ImageAdapter(this);
         gridView.setAdapter(adapter);
+
         SharedPreferences mprefs = getSharedPreferences("TILE_STATES", 0);
         List<Organism> tempList = adapter.loadTileStates(mprefs);
-        if (tempList != null) {
+        if (tempList != null) { // restore the board from previous run
             adapter.tileStates = tempList;
-        } // restore the board from previous run
+        }
+
+        // recount and display the correct population based on the board state
         adapter.countPopulation();
         int snapperPops = adapter.getSnapperPopulation();
         snapperPopulation.setText(String.valueOf("Snappers: " + snapperPops));
@@ -83,8 +90,7 @@ public class MainActivity extends CustomActivity {
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
                 Organism organism = adapter.getTileState(position);
                 if (organism.getSpecies().equals(Organism.Species.Empty)) {
-                    //Toast.makeText(MainActivity.this, "Reset the board.", Toast.LENGTH_SHORT).show();
-                    if (game.getTurn().equals(Game.Turn.P1)) {
+                    if (game.getTurn().equals(Game.Turn.P1)) { // fill the tile with the appropriate species
                         organism.setSpecies(Organism.Species.Snapper);
                         adapter.setTileState(position, organism);
 
@@ -92,8 +98,8 @@ public class MainActivity extends CustomActivity {
                         viewToChange.setAlpha(1.0f);
                         viewToChange.setImageResource(R.drawable.snapper);
 
-                        game.setTurn(Game.Turn.P2);
-                        nextTurn.setImageResource(R.drawable.sea);
+                        game.setTurn(Game.Turn.P2); // turn now goes to other player
+                        nextTurn.setImageResource(R.drawable.sea); // display the species of the other player's token
                     } else {
                         organism.setSpecies(Organism.Species.Sea);
                         adapter.setTileState(position, organism);
@@ -104,11 +110,10 @@ public class MainActivity extends CustomActivity {
                         game.setTurn(Game.Turn.P1);
                         nextTurn.setImageResource(R.drawable.snapper);
                     }
-                    ArrayList<Integer> toDie = adapter.interCompetition(); // convert the surrounded organisms
+                    ArrayList<Integer> toDie = adapter.interCompetition();
                     final int size = gridView.getChildCount();
                     for(int i = 0; i < size; i++) {
-                        if (toDie.contains(Integer.valueOf(i))) {
-                            Log.i("DEFECTING", String.valueOf(i));
+                        if (toDie.contains(Integer.valueOf(i))) { // these organisms defect to the other species
                             Organism org = adapter.getTileState(Integer.valueOf(i));
                             ImageView gridChild = (ImageView) gridView.getChildAt(i);
                             if (org.getSpecies().equals(Organism.Species.Snapper)) {
@@ -124,6 +129,7 @@ public class MainActivity extends CustomActivity {
                         }
                     }
 
+                    // change population counts and era according to results of this turn
                     adapter.countPopulation();
                     int snapperPops = adapter.getSnapperPopulation();
                     snapperPopulation.setText(String.valueOf("Snappers: " + snapperPops));
@@ -132,6 +138,7 @@ public class MainActivity extends CustomActivity {
                     game.elapseTime();
                     eraLabel.setText(String.valueOf(game.getEra() + "mya"));
 
+                    // check who won
                     if (adapter.isGridFull() || game.getEra() <= 0) {
                         int victory = adapter.determineVictor(snapperPops, seaPops);
                         switch(victory) {
@@ -169,7 +176,7 @@ public class MainActivity extends CustomActivity {
         });
     }
 
-    // change all the tiles back to the pokeball
+    // change all the tiles back to the shell, reset the states
     public void resetBoard(View view) {
         GridView gridView =  (GridView) findViewById(R.id.gridView);
         final int size = gridView.getChildCount();
@@ -201,7 +208,6 @@ public class MainActivity extends CustomActivity {
         editor.putString("eventText", event.getText().toString());
         editor.putString("detailsText", details.getText().toString());
         editor.commit();
-        Toast.makeText(MainActivity.this, "Reset the board.", Toast.LENGTH_SHORT).show();
     }
 
     @Override

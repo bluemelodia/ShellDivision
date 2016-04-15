@@ -67,6 +67,7 @@ public class ImageAdapter extends BaseAdapter {
         tileStates.set(position, newState);
     }
 
+    // methods for loading, saving the tile states
     public void saveTileStates(SharedPreferences mprefs) {
         SharedPreferences.Editor editor = mprefs.edit();
         Gson gson = new Gson();
@@ -102,24 +103,20 @@ public class ImageAdapter extends BaseAdapter {
         }
         // use the current state of the tile to pick which image goes into it
         Organism organism = tileStates.get(position);
-        //Log.i("SWITCH ORG AT POSITION:", String.valueOf(position));
         if (organism.getSpecies() == Organism.Species.Empty) {
             imageView.setImageResource(R.drawable.shell);
             imageView.setAlpha(0.2f);
-            //Log.i("Switched:", "EMPTY");
         } else if (organism.getSpecies() == Organism.Species.Snapper) {
             imageView.setImageResource(R.drawable.snapper);
             imageView.setAlpha(1.0f);
-            //Log.i("Switched:", "SNAPPER->SEA");
         } else if (organism.getSpecies() == Organism.Species.Sea) {
             imageView.setImageResource(R.drawable.sea);
             imageView.setAlpha(1.0f);
-            //Log.i("Switched:", "SEA->SNAPPER");
         }
         return imageView;
     }
 
-    // eradication methods
+    // determine which competitors are to be eliminated
     public ArrayList<Integer> interCompetition() {
         ArrayList<Integer> toDie = new ArrayList<>();
         for (int i = 0; i < 64; i++) {
@@ -130,28 +127,24 @@ public class ImageAdapter extends BaseAdapter {
                 Organism left = getTileState(i-1);
                 if (!left.getSpecies().equals(Organism.Species.Empty) && !left.getSpecies().equals(organism.getSpecies())) {
                     competitors++;
-                    Log.i("Left comp for", String.valueOf(i));
                 }
             }
             if (i%8 != 7) { // right organism
                 Organism right = getTileState(i+1);
                 if (!right.getSpecies().equals(Organism.Species.Empty) && !right.getSpecies().equals(organism.getSpecies())) {
                     competitors++;
-                    Log.i("Right comp for", String.valueOf(i));
                 }
             }
             if (i-8 >= 0) { // above organism
                 Organism up = getTileState(i-8);
                 if (!up.getSpecies().equals(Organism.Species.Empty) && !up.getSpecies().equals(organism.getSpecies())) {
                     competitors++;
-                    Log.i("Up comp for", String.valueOf(i));
                 }
             }
             if (i+8 < 64 && i < 56) { // below organism
                 Organism down = getTileState(i+8);
                 if (!down.getSpecies().equals(Organism.Species.Empty) && !down.getSpecies().equals(organism.getSpecies())) {
                     competitors++;
-                    Log.i("Down comp for", String.valueOf(i));
                 }
             }
 
@@ -159,7 +152,6 @@ public class ImageAdapter extends BaseAdapter {
                 Organism lu = getTileState(i-9);
                 if (!lu.getSpecies().equals(Organism.Species.Empty) && !lu.getSpecies().equals(organism.getSpecies())) {
                     competitors++;
-                    Log.i("LU comp for", String.valueOf(i));
                 }
             }
 
@@ -167,7 +159,6 @@ public class ImageAdapter extends BaseAdapter {
                 Organism ru = getTileState(i-7);
                 if (!ru.getSpecies().equals(Organism.Species.Empty) && !ru.getSpecies().equals(organism.getSpecies())) {
                     competitors++;
-                    Log.i("RU comp for", String.valueOf(i));
                 }
             }
 
@@ -175,7 +166,6 @@ public class ImageAdapter extends BaseAdapter {
                 Organism ld = getTileState(i+7);
                 if (!ld.getSpecies().equals(Organism.Species.Empty) && !ld.getSpecies().equals(organism.getSpecies())) {
                     competitors++;
-                    Log.i("LD comp for", String.valueOf(i));
                 }
             }
 
@@ -183,18 +173,15 @@ public class ImageAdapter extends BaseAdapter {
                 Organism rd = getTileState(i+9);
                 if (!rd.getSpecies().equals(Organism.Species.Empty) && !rd.getSpecies().equals(organism.getSpecies())) {
                     competitors++;
-                    Log.i("RD comp for", String.valueOf(i));
                 }
             }
-
-            Log.i("Competitors:", String.valueOf(competitors));
             if (competitors > 4) toDie.add(Integer.valueOf(i));
         }
 
         return toDie;
     }
 
-    // count population methods
+    // return population methods
     public int getSnapperPopulation() {
         return snapperPopulation;
     }
@@ -208,6 +195,7 @@ public class ImageAdapter extends BaseAdapter {
         seaPopulation = 0;
     }
 
+    // count how many of each species is on the board
     public void countPopulation() {
         snapperPopulation = 0;
         seaPopulation = 0;
@@ -218,7 +206,7 @@ public class ImageAdapter extends BaseAdapter {
         }
     }
 
-    // check for fullness
+    // check for grid fullness
     public boolean isGridFull() {
         for(int i = 0; i < 64; i++) {
             Organism organism = getTileState(i);
@@ -227,6 +215,7 @@ public class ImageAdapter extends BaseAdapter {
         return true;
     }
 
+    // the person with more tiles on the board wins
     public int determineVictor(int snapCount, int seaCount) {
         if (snapCount > seaCount) return 1;
         else if (seaCount > snapCount) return 2;
