@@ -1,6 +1,7 @@
 package com.example.bluemelodia.shelldivision;
 
 import android.content.SharedPreferences;
+import android.provider.Settings;
 import android.media.Image;
 import android.net.Uri;
 import android.os.Bundle;
@@ -27,6 +28,7 @@ import java.util.List;
 public class MainActivity extends CustomActivity {
     public static final String EVENT_MESSAGES = "EventMessages";
     public static final String TILE_STATES = "TileStates";
+    public static final String GAME_STATE = "GameState";
     private static ImageAdapter adapter;
     private Game game;
     TextView eraLabel;
@@ -41,12 +43,12 @@ public class MainActivity extends CustomActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
+        SharedPreferences gamePrefs = getSharedPreferences("GAME_STATE", 0);
         game = new Game();
-        game.setTurn(Game.Turn.P1);
-        game.setEra(300);
+        game.loadGameState(gamePrefs, game);
 
         eraLabel = (TextView) findViewById(R.id.eraLabel);
-        eraLabel.setText(String.valueOf("300mya"));
+        eraLabel.setText(String.valueOf(game.getEra()) + "mya");
         snapperPopulation = (TextView) findViewById(R.id.snapperPopulation);
         seaPopulation = (TextView) findViewById(R.id.seaPopulation);
         SharedPreferences eventMessage = getSharedPreferences(EVENT_MESSAGES, 0);
@@ -55,7 +57,11 @@ public class MainActivity extends CustomActivity {
         details = (TextView) findViewById(R.id.details);
         details.setText(eventMessage.getString("detailsText", ""));
         nextTurn = (ImageView) findViewById(R.id.nextTurn);
-        nextTurn.setImageResource(R.drawable.snapper);
+        if (game.getTurn() == Game.Turn.P1) {
+            nextTurn.setImageResource(R.drawable.snapper);
+        } else {
+            nextTurn.setImageResource(R.drawable.sea);
+        }
         final GridView gridView = (GridView) findViewById(R.id.gridView);
         // set a custom adapter (ImageAdapter) as the source for all items to be displayed in the grid
         adapter = new ImageAdapter(this);
@@ -160,9 +166,12 @@ public class MainActivity extends CustomActivity {
                         editor.putString("eventText", event.getText().toString());
                         editor.putString("detailsText", details.getText().toString());
                         editor.commit();
-                    } else { // save the board state
+                    } else { // save the board and game state
                         SharedPreferences mprefs = getSharedPreferences("TILE_STATES", 0);
                         adapter.saveTileStates(mprefs);
+
+                        SharedPreferences gamePrefs = getSharedPreferences("GAME_STATE", 0);
+                        game.saveGameState(gamePrefs);
                     }
                 }
             }
@@ -183,8 +192,12 @@ public class MainActivity extends CustomActivity {
         }
         SharedPreferences mprefs = getSharedPreferences("TILE_STATES", 0);
         adapter.saveTileStates(mprefs);
+
         game.setTurn(Game.Turn.P1);
         game.setEra(300);
+        SharedPreferences gamePrefs = getSharedPreferences("GAME_STATE", 0);
+        game.saveGameState(gamePrefs);
+
         eraLabel.setText("300mya");
         nextTurn.setImageResource(R.drawable.snapper);
         adapter.resetPops();
