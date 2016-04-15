@@ -64,6 +64,20 @@ public class MainActivity extends AppCompatActivity {
         List<Organism> tempList = adapter.loadTileStates(mprefs);
         if (tempList != null) {
             adapter.tileStates = tempList;
+            /*final int size = gridView.getChildCount();
+            for(int i = 0; i < size; i++) {
+                Organism org = adapter.getTileState(Integer.valueOf(i));
+                if (org.getSpecies() != Organism.Species.Empty) {
+                    ImageView gridChild = (ImageView) gridView.getChildAt(i);
+                    if (org.getSpecies() == Organism.Species.Snapper) {
+                        gridChild.setImageResource(R.drawable.snapper);
+                    } else {
+                        gridChild.setImageResource(R.drawable.sea);
+                    }
+                    gridChild.setAlpha(1.0f);
+                    //adapter.setTileState(i, org);
+                }
+            }*/
         } // restore the board from previous run
 
         gridView.setOnItemClickListener(new AdapterView.OnItemClickListener() {

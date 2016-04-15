@@ -80,9 +80,6 @@ public class ImageAdapter extends BaseAdapter {
         String json = mprefs.getString("TileStates", null);
         Type type = new TypeToken<List<Organism>>(){}.getType();
         List<Organism> tileStatesNew = gson.fromJson(json, type);
-        /*Gson gson = new GsonBuilder().create();
-        Type type = new TypeToken<List<Organism>>(){}.getType();
-        List<Organism> tileStatesNew = gson.fromJson("TileStates", type);*/
         return tileStatesNew;
     }
 
@@ -98,7 +95,7 @@ public class ImageAdapter extends BaseAdapter {
             imageView = new ImageView(mContext);
             imageView.setLayoutParams(new GridView.LayoutParams(GridView.AUTO_FIT, 75));
             imageView.setScaleType(ImageView.ScaleType.CENTER_CROP);
-            imageView.setAlpha(0.2f);
+            imageView.setAlpha(1.0f);
             imageView.setPadding(0, 0, 0, 0);
         } else {
             imageView = (ImageView) convertView;
@@ -108,12 +105,15 @@ public class ImageAdapter extends BaseAdapter {
         //Log.i("SWITCH ORG AT POSITION:", String.valueOf(position));
         if (organism.getSpecies() == Organism.Species.Empty) {
             imageView.setImageResource(R.drawable.shell);
+            imageView.setAlpha(0.2f);
             //Log.i("Switched:", "EMPTY");
         } else if (organism.getSpecies() == Organism.Species.Snapper) {
             imageView.setImageResource(R.drawable.snapper);
+            imageView.setAlpha(1.0f);
             //Log.i("Switched:", "SNAPPER->SEA");
         } else if (organism.getSpecies() == Organism.Species.Sea) {
             imageView.setImageResource(R.drawable.sea);
+            imageView.setAlpha(1.0f);
             //Log.i("Switched:", "SEA->SNAPPER");
         }
         return imageView;
