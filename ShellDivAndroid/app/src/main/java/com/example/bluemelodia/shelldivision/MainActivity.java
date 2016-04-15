@@ -24,7 +24,7 @@ import java.lang.reflect.Array;
 import java.util.ArrayList;
 import java.util.List;
 
-public class MainActivity extends AppCompatActivity {
+public class MainActivity extends CustomActivity {
     public static final String EVENT_MESSAGES = "EventMessages";
     public static final String TILE_STATES = "TileStates";
     private static ImageAdapter adapter;

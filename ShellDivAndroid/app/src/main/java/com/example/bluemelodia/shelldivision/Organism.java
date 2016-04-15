@@ -38,17 +38,4 @@ public class Organism {
     public void setSpecies(Species species) {
         sp = species;
     }
-
-    public void saveOrganism(Context context) {
-        SharedPreferences prefs = (SharedPreferences) context.getApplicationContext();
-        SharedPreferences.Editor editor = prefs.edit();
-        Gson gson = new Gson();
-        editor.putString("Organism", gson.toJson(this));
-        editor.commit();
-    }
-
-    public Organism loadOrganism() {
-        Gson gson = new GsonBuilder().create();
-        return gson.fromJson("Organism", Organism.class);
-    }
 }
