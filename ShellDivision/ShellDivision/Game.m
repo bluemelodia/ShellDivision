@@ -30,6 +30,7 @@
     }
 }
 
+// must implement in order to use NSUserDefaults
 - (id)initWithCoder:(NSCoder *)decoder {
     NSMutableArray *gameInfo = [decoder decodeObjectForKey:@"GAME_INFO"];
     self.turn = (int)[[gameInfo objectAtIndex:0] integerValue];
@@ -37,7 +38,6 @@
     return self;
 }
 
-// allows saving into NSUserDefaults
 - (void)encodeWithCoder:(NSCoder *)aCoder {
     NSMutableArray *gameInfo = [[NSMutableArray alloc] initWithCapacity:2];
     NSNumber* wrappedTurn = [NSNumber numberWithInt:self.turn];

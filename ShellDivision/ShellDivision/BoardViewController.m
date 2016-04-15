@@ -60,7 +60,6 @@ static NSString *const EVENT_DETAIL = @"EventDetail";
         game = [[Game alloc] init];
         game.turn = P1;
         game.era = 300;
-        NSLog(@"NEW GAME");
         NSData *data = [NSKeyedArchiver archivedDataWithRootObject:game];
         [[NSUserDefaults standardUserDefaults] setObject:data forKey:GAME_STATE];
         
@@ -72,21 +71,12 @@ static NSString *const EVENT_DETAIL = @"EventDetail";
         }
         NSData *orgData = [NSKeyedArchiver archivedDataWithRootObject:organisms];
         [[NSUserDefaults standardUserDefaults] setObject:orgData forKey:BOARD_STATE];
-    } else {
+    } else { // load saved game state
         NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
         NSData *data = [defaults objectForKey:GAME_STATE];
         game = [NSKeyedUnarchiver unarchiveObjectWithData:data];
         game.turn = [game getTurn];
         game.era = [game getEra];
-        //NSLog(@"%d %d", [thisGame getTurn], [thisGame getEra]);
-        //[thisGame elapseTime];
-        //NSLog(@"%d %d", [thisGame getTurn], [thisGame getEra]);
-        
-        // Synch test succeeded - should do this after each turn, but you also have to save the board!
-        //NSData *dataToSave = [NSKeyedArchiver archivedDataWithRootObject:game];
-        //[[NSUserDefaults standardUserDefaults] setObject:dataToSave forKey:GAME_STATE];
-        //[[NSUserDefaults standardUserDefaults] synchronize];
-        
         NSData *orgData = [defaults objectForKey:BOARD_STATE];
         organisms = [NSKeyedUnarchiver unarchiveObjectWithData:orgData];
         [self countSpecies];
@@ -128,11 +118,9 @@ static NSString *const EVENT_DETAIL = @"EventDetail";
     BoardCollectionViewCell *cell = [self.board dequeueReusableCellWithReuseIdentifier:@"BoardCell" forIndexPath:indexPath];
     Organism *thisCreature = [organisms objectAtIndex:indexPath.row];
     [cell setCellImageByState:[thisCreature getSpecies]];
-    //NSLog(@"Hi I am %d", [thisCreature getSpecies]);
     return cell;
 }
 
-// TODO, start a game, set the turn, and add logic to change turns
 - (void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath {
     BoardCollectionViewCell *cell = (BoardCollectionViewCell *) [self.board cellForItemAtIndexPath:indexPath];
     Organism *thisCreature = [organisms objectAtIndex:indexPath.row];
@@ -182,57 +170,48 @@ static NSString *const EVENT_DETAIL = @"EventDetail";
             Organism *left = [organisms objectAtIndex:i-1];
             if ([left getSpecies] != Empty && [left getSpecies] != species) {
                 competitors++;
-                NSLog(@"LEFT of %d", i);
             }
         } if (i%8 != 7) { // get the right organism, can't get right if on the right corner
             Organism *right = [organisms objectAtIndex:i+1];
             if ([right getSpecies] != Empty && [right getSpecies] != species) {
                 competitors++;
-                NSLog(@"RIGHT of %d", i);
             }
         } if (i-8 >= 0) { // get the organism above it, can't go further up if in first row
             Organism *up = [organisms objectAtIndex:i-8];
             if ([up getSpecies] != Empty && [up getSpecies] != species) {
                 competitors++;
-                NSLog(@"UP of %d", i);
             }
         } if (i+8 < 64 && i < 56) { // get the organism below it, can't go further down if in the last row
             Organism *down = [organisms objectAtIndex:i+8];
             if ([down getSpecies] != Empty && [down getSpecies] != species) {
                 competitors++;
-                NSLog(@"DOWN of %d", i);
             }
         }
         if (i%8 != 0 && (i-9) >= 0) { // get diagonal left up organism
             Organism *lu = [organisms objectAtIndex:i-9];
             if ([lu getSpecies] != Empty && [lu getSpecies] != species) {
                 competitors++;
-                NSLog(@"DIA LEFT UP of %d", i);
             }
         }
         if (i%8 != 7 && (i-7) >= 0) { // get diagonal right up organism
             Organism *ru = [organisms objectAtIndex:i-7];
             if ([ru getSpecies] != Empty && [ru getSpecies] != species) {
                 competitors++;
-                NSLog(@"DIA RIGHT UP of %d", i);
             }
         }
         if (i%8 != 0 && (i+7) < 64) { // get diagonal left down organism
             Organism *ld = [organisms objectAtIndex:i+7];
             if ([ld getSpecies] != Empty && [ld getSpecies] != species) {
                 competitors++;
-                NSLog(@"DIA LEFT DOWN of %d", i);
             }
         }
         if (i%8 != 7 && (i+9) < 64) { // get diagonal right down organism
             Organism *rd = [organisms objectAtIndex:i+9];
             if ([rd getSpecies] != Empty && [rd getSpecies] != species) {
                 competitors++;
-                NSLog(@"DIA RIGHT DOWN of %d", i);
             }
         }
         if (competitors > 4) [toDie addObject:[NSNumber numberWithInt:i]];
-        if (competitors > 4) NSLog(@"Death to %d with competitors %d", i, competitors);
     }
     
     // convert the organisms that were outcompeted
@@ -276,18 +255,17 @@ static NSString *const EVENT_DETAIL = @"EventDetail";
         [[NSUserDefaults standardUserDefaults] setObject:message forKey:EVENT_DETAIL];
         [[NSUserDefaults standardUserDefaults]synchronize];
         self.board.userInteractionEnabled = NO;
-    } else {
-        [self displayNextTurn];
-        // update the game object
-        NSData *savedData = [NSKeyedArchiver archivedDataWithRootObject:game];
-        [[NSUserDefaults standardUserDefaults]setObject:savedData forKey:GAME_STATE];
-        NSData *savedOrgData = [NSKeyedArchiver archivedDataWithRootObject:organisms];
-        [[NSUserDefaults standardUserDefaults] setObject:savedOrgData forKey:BOARD_STATE];
-        [[NSUserDefaults standardUserDefaults]synchronize];
-        [self.board reloadData];
     }
+    [self displayNextTurn];
+    NSData *savedData = [NSKeyedArchiver archivedDataWithRootObject:game];
+    [[NSUserDefaults standardUserDefaults]setObject:savedData forKey:GAME_STATE];
+    NSData *savedOrgData = [NSKeyedArchiver archivedDataWithRootObject:organisms];
+    [[NSUserDefaults standardUserDefaults] setObject:savedOrgData forKey:BOARD_STATE];
+    [[NSUserDefaults standardUserDefaults]synchronize];
+    [self.board reloadData];
 }
 
+// who won?
 - (int) determineVictor {
     int snapCount = 0;
     int seaCount = 0;
@@ -302,8 +280,8 @@ static NSString *const EVENT_DETAIL = @"EventDetail";
     else return 4;
 }
 
+// did anyone win?
 - (BOOL) checkWin {
-    NSLog(@"ERA: %d", game.era);
     if ([self isGridFull]) {
         return true;
     } else if (game.era <= 0) {
@@ -372,7 +350,6 @@ static NSString *const EVENT_DETAIL = @"EventDetail";
     
     [self.board reloadData];
 }
-
 
 /*
 #pragma mark - Navigation
