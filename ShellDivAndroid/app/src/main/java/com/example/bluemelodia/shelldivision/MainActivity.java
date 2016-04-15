@@ -57,6 +57,7 @@ public class MainActivity extends CustomActivity {
         details = (TextView) findViewById(R.id.details);
         details.setText(eventMessage.getString("detailsText", ""));
         nextTurn = (ImageView) findViewById(R.id.nextTurn);
+
         if (game.getTurn() == Game.Turn.P1) {
             nextTurn.setImageResource(R.drawable.snapper);
         } else {
@@ -70,21 +71,12 @@ public class MainActivity extends CustomActivity {
         List<Organism> tempList = adapter.loadTileStates(mprefs);
         if (tempList != null) {
             adapter.tileStates = tempList;
-            /*final int size = gridView.getChildCount();
-            for(int i = 0; i < size; i++) {
-                Organism org = adapter.getTileState(Integer.valueOf(i));
-                if (org.getSpecies() != Organism.Species.Empty) {
-                    ImageView gridChild = (ImageView) gridView.getChildAt(i);
-                    if (org.getSpecies() == Organism.Species.Snapper) {
-                        gridChild.setImageResource(R.drawable.snapper);
-                    } else {
-                        gridChild.setImageResource(R.drawable.sea);
-                    }
-                    gridChild.setAlpha(1.0f);
-                    //adapter.setTileState(i, org);
-                }
-            }*/
         } // restore the board from previous run
+        adapter.countPopulation();
+        int snapperPops = adapter.getSnapperPopulation();
+        snapperPopulation.setText(String.valueOf("Snappers: " + snapperPops));
+        int seaPops = adapter.getSeaPopulation();
+        seaPopulation.setText(String.valueOf("Sea: " + seaPops));
 
         gridView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
