@@ -1,5 +1,8 @@
 package com.example.bluemelodia.shelldivision;
 
+import android.content.SharedPreferences;
+import android.content.SharedPreferences.Editor;
+import android.content.Context;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
 import android.content.Context;
@@ -7,10 +10,17 @@ import android.widget.GridView;
 import android.widget.ImageView;
 import android.view.View;
 import android.util.Log;
+
+import com.google.gson.Gson;
+import com.google.gson.GsonBuilder;
+import com.google.gson.reflect.TypeToken;
+
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+
+import java.lang.reflect.Type;
 
 /**
  * Created by bluemelodia on 3/10/16.
@@ -18,6 +28,7 @@ import java.util.Map;
 public class ImageAdapter extends BaseAdapter {
     private Context mContext;
 
+    public static final String TILE_STATES = "TileStates";
     private static final int Empty = 0;
     private static final int Snapper = 1;
     private static final int Sea = 2;
@@ -54,6 +65,25 @@ public class ImageAdapter extends BaseAdapter {
     // change the state of the tile
     public void setTileState(int position, Organism newState) {
         tileStates.set(position, newState);
+    }
+
+    public void saveTileStates(SharedPreferences mprefs) {
+        SharedPreferences.Editor editor = mprefs.edit();
+        Gson gson = new Gson();
+        String json = gson.toJson(tileStates);
+        editor.putString("TileStates", json);
+        editor.commit();
+    }
+
+    public List<Organism> loadTileStates(SharedPreferences mprefs) {
+        Gson gson = new Gson();
+        String json = mprefs.getString("TileStates", null);
+        Type type = new TypeToken<List<Organism>>(){}.getType();
+        List<Organism> tileStatesNew = gson.fromJson(json, type);
+        /*Gson gson = new GsonBuilder().create();
+        Type type = new TypeToken<List<Organism>>(){}.getType();
+        List<Organism> tileStatesNew = gson.fromJson("TileStates", type);*/
+        return tileStatesNew;
     }
 
     // return the row id of the item

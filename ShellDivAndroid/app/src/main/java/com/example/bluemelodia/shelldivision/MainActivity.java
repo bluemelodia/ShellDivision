@@ -22,9 +22,11 @@ import com.google.android.gms.common.api.GoogleApiClient;
 
 import java.lang.reflect.Array;
 import java.util.ArrayList;
+import java.util.List;
 
 public class MainActivity extends AppCompatActivity {
     public static final String EVENT_MESSAGES = "EventMessages";
+    public static final String TILE_STATES = "TileStates";
     private static ImageAdapter adapter;
     private Game game;
     TextView eraLabel;
@@ -54,11 +56,15 @@ public class MainActivity extends AppCompatActivity {
         details.setText(eventMessage.getString("detailsText", ""));
         nextTurn = (ImageView) findViewById(R.id.nextTurn);
         nextTurn.setImageResource(R.drawable.snapper);
-
         final GridView gridView = (GridView) findViewById(R.id.gridView);
         // set a custom adapter (ImageAdapter) as the source for all items to be displayed in the grid
         adapter = new ImageAdapter(this);
         gridView.setAdapter(adapter);
+        SharedPreferences mprefs = getSharedPreferences("TILE_STATES", 0);
+        List<Organism> tempList = adapter.loadTileStates(mprefs);
+        if (tempList != null) {
+            adapter.tileStates = tempList;
+        } // restore the board from previous run
 
         gridView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
@@ -140,6 +146,9 @@ public class MainActivity extends AppCompatActivity {
                         editor.putString("eventText", event.getText().toString());
                         editor.putString("detailsText", details.getText().toString());
                         editor.commit();
+                    } else { // save the board state
+                        SharedPreferences mprefs = getSharedPreferences("TILE_STATES", 0);
+                        adapter.saveTileStates(mprefs);
                     }
                 }
             }
@@ -158,6 +167,8 @@ public class MainActivity extends AppCompatActivity {
             gridChild.setAlpha(0.2f);
             adapter.setTileState(i, org);
         }
+        SharedPreferences mprefs = getSharedPreferences("TILE_STATES", 0);
+        adapter.saveTileStates(mprefs);
         game.setTurn(Game.Turn.P1);
         game.setEra(300);
         eraLabel.setText("300mya");
